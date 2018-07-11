@@ -14,13 +14,24 @@
 import Foundation
 import UIKit
 
-enum InchType {
-    case unknown
-    case i58Full
-    case i55
-    case i47
-    case i40
+postfix operator <~
+postfix operator >~
+postfix func <~ (l: InchType) -> [InchType] {
+    guard l.rawValue >= 0 else { return [] }
+    return Array(InchType.all[l.rawValue ..< InchType.all.count])
+}
+postfix func >~ (l: InchType) -> [InchType] {
+    guard l.rawValue < InchType.all.count else { return InchType.all }
+    return Array(InchType.all[0 ... l.rawValue])
+}
+
+enum InchType: Int {
+    case unknown = -1
     case i35
+    case i40
+    case i47
+    case i55
+    case i58Full
     
     static let current: InchType = {
         let screenWidth = Float(UIScreen.main.bounds.width)
@@ -28,19 +39,50 @@ enum InchType {
         let width = min(screenWidth, screenHeight)
         let height = max(screenWidth, screenHeight)
         
-        if width == 375, height == 812 { return .i58Full }
-        if width == 414, height == 736 { return .i55 }
-        if width == 375, height == 667 { return .i47 }
-        if width == 320, height == 568 { return .i40 }
         if width == 320, height == 480 { return .i35 }
+        if width == 320, height == 568 { return .i40 }
+        if width == 375, height == 667 { return .i47 }
+        if width == 414, height == 736 { return .i55 }
+        if width == 375, height == 812 { return .i58Full }
+        
         return .unknown
     } ()
+    
+    static let all: [InchType] = [.i35,
+                                  .i40,
+                                  .i47,
+                                  .i55,
+                                  .i58Full]
 }
 
-extension Int: InchableAuto {}
-extension Float: InchableAuto {}
-extension CGFloat: InchableAuto {}
-extension Double: InchableAuto {}
+extension InchType: Equatable {
+    static func == (lhs: InchType, rhs: InchType) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+}
+
+extension InchType: Comparable {
+    static func < (lhs: InchType, rhs: InchType) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}
+
+extension InchType: Strideable {
+    typealias Stride = Int
+    
+    func distance(to other: InchType) -> Int {
+        return 1
+    }
+    
+    func advanced(by n: Int) -> InchType {
+        return InchType(rawValue: n) ?? .unknown
+    }
+}
+
+extension Int: Inchable {}
+extension Float: Inchable {}
+extension CGFloat: Inchable {}
+extension Double: Inchable {}
 extension String: Inchable {}
 
 protocol Inchable {
@@ -50,11 +92,10 @@ protocol Inchable {
     func i47(_ value: Self) -> Self
     func i40(_ value: Self) -> Self
     func i35(_ value: Self) -> Self
-}
-
-protocol InchableAuto: Inchable {
     
-    func auto(_ base: Self) -> Self
+    func inchs(_ inchs: [InchType], _ value: Self) -> Self
+    func inchs(_ range: Range<InchType>, _ value: Self) -> Self
+    func inchs(_ range: ClosedRange<InchType>, _ value: Self) -> Self
 }
 
 extension Inchable {
@@ -74,22 +115,50 @@ extension Inchable {
     func i35(_ value: Self) -> Self {
         return InchType.current == .i35 ? value : self
     }
+    
+    func inchs(_ inchs: [InchType], _ value: Self) -> Self {
+        return inchs.contains(.current) ? value : self
+    }
+    func inchs(_ range: Range<InchType>, _ value: Self) -> Self {
+        return range ~= .current ? value : self
+    }
+    func inchs(_ range: ClosedRange<InchType>, _ value: Self) -> Self {
+        return range ~= .current ? value : self
+    }
+    func inchs(_ range: CountableRange<InchType>, _ value: Self) -> Self {
+        return range ~= .current ? value : self
+    }
 }
 
-extension InchableAuto where Self == Int {
-    func auto(_ base: Self) -> Self { return Self(Double(self).auto(Double(base))) }
+extension Float: InchAutoable {}
+extension CGFloat: InchAutoable {}
+extension Double: InchAutoable {}
+
+protocol InchAutoable {
+    
+    /// 自动处理
+    ///
+    /// - Parameter handle: 处理闭包
+    /// - Returns: 返回值
+    func auto(handle: (Self)-> Self) ->Self
 }
-extension InchableAuto where Self == Float {
-    func auto(_ base: Self) -> Self { return Self(Double(self).auto(Double(base))) }
+
+extension InchAutoable {
+    func auto(handle: (Self)-> Self) -> Self {
+        return handle(self)
+    }
 }
-extension InchableAuto where Self == CGFloat {
-    func auto(_ base: Self) -> Self { return Self(Double(self).auto(Double(base))) }
-}
-extension InchableAuto where Self == Double {
-    func auto(_ base: Self = 375.0) -> Self {
+
+extension InchAutoable where Self: BinaryFloatingPoint {
+    
+    /// 自动比例转换 (基于屏幕宽度)
+    ///
+    /// - Parameter baseWidth: 基准屏幕宽度 默认375
+    /// - Returns: 返回结果
+    func auto(_ baseWidth: Double = 375.0) -> Self {
         let screenWidth = Double(UIScreen.main.bounds.width)
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
-        return self * (width / base)
+        return auto(handle: { $0 * Self(width / baseWidth) })
     }
 }
