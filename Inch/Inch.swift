@@ -130,35 +130,40 @@ extension Inchable {
     }
 }
 
-extension Float: InchAutoable {}
-extension CGFloat: InchAutoable {}
-extension Double: InchAutoable {}
-
-protocol InchAutoable {
-    
-    /// 自动处理
-    ///
-    /// - Parameter handle: 处理闭包
-    /// - Returns: 返回值
-    func auto(handle: (Self)-> Self) ->Self
-}
-
-extension InchAutoable {
-    func auto(handle: (Self)-> Self) -> Self {
-        return handle(self)
-    }
-}
-
-extension InchAutoable where Self: BinaryFloatingPoint {
+extension Double {
     
     /// 自动比例转换 (基于屏幕宽度)
     ///
     /// - Parameter baseWidth: 基准屏幕宽度 默认375
     /// - Returns: 返回结果
-    func auto(_ baseWidth: Double = 375.0) -> Self {
+    func auto(_ baseWidth: Double = 375) -> Double {
         let screenWidth = Double(UIScreen.main.bounds.width)
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
-        return auto(handle: { $0 * Self(width / baseWidth) })
+        return self * (width / baseWidth)
+    }
+}
+
+extension BinaryInteger {
+    
+    func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
+        let temp = Double("\(self)") ?? 0
+        return temp.auto(baseWidth)
+    }
+    func auto<T: BinaryFloatingPoint>(_ baseWidth: Double = 375) -> T {
+        let temp = Double("\(self)") ?? 0
+        return temp.auto(baseWidth)
+    }
+}
+
+extension BinaryFloatingPoint {
+    
+    func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
+        let temp: Double = auto(baseWidth)
+        return T(temp)
+    }
+    func auto<T: BinaryFloatingPoint>(_ baseWidth: Double = 375) -> T {
+        let temp = Double("\(self)") ?? 0
+        return T(temp.auto(baseWidth))
     }
 }
