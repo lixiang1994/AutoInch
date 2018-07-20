@@ -12,6 +12,7 @@
 //
 
 import Foundation
+#if os(iOS)
 import UIKit
 
 postfix operator <~
@@ -25,6 +26,8 @@ postfix func >~ (l: InchType) -> [InchType] {
     return Array(InchType.all[0 ... l.rawValue])
 }
 
+typealias InchNumber = CGFloat
+
 enum InchType: Int {
     case unknown = -1
     case i35
@@ -33,26 +36,48 @@ enum InchType: Int {
     case i55
     case i58Full
     
-    static let current: InchType = {
-        let screenWidth = Float(UIScreen.main.bounds.width)
-        let screenHeight = Float(UIScreen.main.bounds.height)
-        let width = min(screenWidth, screenHeight)
-        let height = max(screenWidth, screenHeight)
-        
-        if width == 320, height == 480 { return .i35 }
-        if width == 320, height == 568 { return .i40 }
-        if width == 375, height == 667 { return .i47 }
-        if width == 414, height == 736 { return .i55 }
-        if width == 375, height == 812 { return .i58Full }
-        
-        return .unknown
-    } ()
+    var width: InchNumber {
+        switch self {
+        case .unknown:  return 0
+        case .i35:      return 320
+        case .i40:      return 320
+        case .i47:      return 375
+        case .i55:      return 414
+        case .i58Full:  return 375
+        }
+    }
     
-    static let all: [InchType] = [.i35,
-                                  .i40,
-                                  .i47,
-                                  .i55,
-                                  .i58Full]
+    var height: InchNumber {
+        switch self {
+        case .unknown:  return 0
+        case .i35:      return 480
+        case .i40:      return 568
+        case .i47:      return 667
+        case .i55:      return 736
+        case .i58Full:  return 812
+        }
+    }
+    
+    private var size: CGSize { return CGSize(width: width, height: height) }
+    
+    static func type(size: CGSize) -> InchType {
+        let width = min(size.width, size.height)
+        let height = max(size.width, size.height)
+        let size = CGSize(width: width, height: height)
+        
+        switch size {
+        case InchType.i35.size:     return .i35
+        case InchType.i40.size:     return .i40
+        case InchType.i47.size:     return .i47
+        case InchType.i55.size:     return .i55
+        case InchType.i58Full.size: return .i58Full
+        default:                    return .unknown
+        }
+    }
+    
+    static let current: InchType = type(size: UIScreen.main.bounds.size)
+    
+    static let all: [InchType] = [.i35, .i40, .i47, .i55, .i58Full]
 }
 
 extension InchType: Equatable {
@@ -81,51 +106,71 @@ extension InchType: Strideable {
 
 extension Int: Inchable {}
 extension Float: Inchable {}
-extension CGFloat: Inchable {}
 extension Double: Inchable {}
 extension String: Inchable {}
+extension CGRect: Inchable {}
+extension CGSize: Inchable {}
+extension CGFloat: Inchable {}
+extension CGPoint: Inchable {}
 
 protocol Inchable {
     
-    func i58full(_ value: Self) -> Self
-    func i55(_ value: Self) -> Self
-    func i47(_ value: Self) -> Self
-    func i40(_ value: Self) -> Self
     func i35(_ value: Self) -> Self
+    func i40(_ value: Self) -> Self
+    func i47(_ value: Self) -> Self
+    func i55(_ value: Self) -> Self
+    func i58full(_ value: Self) -> Self
     
-    func inchs(_ inchs: [InchType], _ value: Self) -> Self
-    func inchs(_ range: Range<InchType>, _ value: Self) -> Self
-    func inchs(_ range: ClosedRange<InchType>, _ value: Self) -> Self
+    func w320(_ value: Self) -> Self
+    func w375(_ value: Self) -> Self
+    func w414(_ value: Self) -> Self
 }
 
 extension Inchable {
     
-    func i58full(_ value: Self) -> Self {
-        return InchType.current == .i58Full ? value : self
-    }
-    func i55(_ value: Self) -> Self {
-        return InchType.current == .i55 ? value : self
-    }
-    func i47(_ value: Self) -> Self {
-        return InchType.current == .i47 ? value : self
+    func i35(_ value: Self) -> Self {
+        return matching(type: .i35, value)
     }
     func i40(_ value: Self) -> Self {
-        return InchType.current == .i40 ? value : self
+        return matching(type: .i40, value)
     }
-    func i35(_ value: Self) -> Self {
-        return InchType.current == .i35 ? value : self
+    func i47(_ value: Self) -> Self {
+        return matching(type: .i47, value)
+    }
+    func i55(_ value: Self) -> Self {
+        return matching(type: .i55, value)
+    }
+    func i58full(_ value: Self) -> Self {
+        return matching(type: .i58Full, value)
     }
     
-    func inchs(_ inchs: [InchType], _ value: Self) -> Self {
-        return inchs.contains(.current) ? value : self
+    func w320(_ value: Self) -> Self {
+        return matching(width: 320, value)
     }
-    func inchs(_ range: Range<InchType>, _ value: Self) -> Self {
+    func w375(_ value: Self) -> Self {
+        return matching(width: 375, value)
+    }
+    func w414(_ value: Self) -> Self {
+        return matching(width: 414, value)
+    }
+    
+    private func matching(type: InchType, _ value: Self) -> Self {
+        return InchType.current == type ? value : self
+    }
+    private func matching(width: InchNumber, _ value: Self) -> Self {
+        return InchType.current.width == width ? value : self
+    }
+    /// 内测方法
+    private func matching(types: [InchType], _ value: Self) -> Self {
+        return types.contains(.current) ? value : self
+    }
+    private func matching(_ range: Range<InchType>, _ value: Self) -> Self {
         return range ~= .current ? value : self
     }
-    func inchs(_ range: ClosedRange<InchType>, _ value: Self) -> Self {
+    private func matching(_ range: ClosedRange<InchType>, _ value: Self) -> Self {
         return range ~= .current ? value : self
     }
-    func inchs(_ range: CountableRange<InchType>, _ value: Self) -> Self {
+    private func matching(_ range: CountableRange<InchType>, _ value: Self) -> Self {
         return range ~= .current ? value : self
     }
 }
@@ -141,6 +186,13 @@ extension Double {
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
         return self * (width / baseWidth)
+    }
+}
+
+extension Int {
+    
+    func auto(_ baseWidth: Double = 375) -> Double {
+        return Double(self).auto(baseWidth)
     }
 }
 
@@ -167,3 +219,5 @@ extension BinaryFloatingPoint {
         return T(temp.auto(baseWidth))
     }
 }
+
+#endif
