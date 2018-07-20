@@ -189,15 +189,11 @@ extension Double {
     }
 }
 
-extension Int {
-    
-    func auto(_ baseWidth: Double = 375) -> Double {
-        return Double(self).auto(baseWidth)
-    }
-}
-
 extension BinaryInteger {
     
+    func auto(_ baseWidth: Double = 375) -> Double {
+        return auto(baseWidth)
+    }
     func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
         let temp = Double("\(self)") ?? 0
         return temp.auto(baseWidth)
@@ -210,6 +206,9 @@ extension BinaryInteger {
 
 extension BinaryFloatingPoint {
     
+    func auto(_ baseWidth: Double = 375) -> Double {
+        return auto(baseWidth)
+    }
     func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
         let temp: Double = auto(baseWidth)
         return T(temp)
