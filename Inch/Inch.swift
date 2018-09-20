@@ -85,7 +85,7 @@ enum InchType: Int {
     
     static let current: InchType = type(size: UIScreen.main.bounds.size)
     
-    /// swift4.2后可以去掉
+    /// swift4.2可以去掉
     static let all: [InchType] = [.i35, .i40, .i47, .i55, .i58Full, .i61Full, i65Full]
 }
 
@@ -161,7 +161,7 @@ extension Inchable {
         return matching(type: .i65Full, value)
     }
     func ifull(_ value: Self) -> Self {
-        return matching(types: [.i58Full, .i61Full, .i65Full], value)
+        return matching([.i58Full, .i61Full, .i65Full], value)
     }
     
     func w320(_ value: Self) -> Self {
@@ -181,7 +181,7 @@ extension Inchable {
         return InchType.current.width == width ? value : self
     }
     /// 内测方法
-    private func matching(types: [InchType], _ value: Self) -> Self {
+    private func matching(_ types: [InchType], _ value: Self) -> Self {
         return types.contains(.current) ? value : self
     }
     private func matching(_ range: Range<InchType>, _ value: Self) -> Self {
