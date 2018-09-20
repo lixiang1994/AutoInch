@@ -35,6 +35,8 @@ enum InchType: Int {
     case i47
     case i55
     case i58Full
+    case i61Full
+    case i65Full
     
     var width: InchNumber {
         switch self {
@@ -44,6 +46,8 @@ enum InchType: Int {
         case .i47:      return 375
         case .i55:      return 414
         case .i58Full:  return 375
+        case .i61Full:  return 414
+        case .i65Full:  return 414
         }
     }
     
@@ -55,6 +59,8 @@ enum InchType: Int {
         case .i47:      return 667
         case .i55:      return 736
         case .i58Full:  return 812
+        case .i61Full:  return 896
+        case .i65Full:  return 896
         }
     }
     
@@ -71,13 +77,16 @@ enum InchType: Int {
         case InchType.i47.size:     return .i47
         case InchType.i55.size:     return .i55
         case InchType.i58Full.size: return .i58Full
+        case InchType.i61Full.size: return .i61Full
+        case InchType.i65Full.size: return .i65Full
         default:                    return .unknown
         }
     }
     
     static let current: InchType = type(size: UIScreen.main.bounds.size)
     
-    static let all: [InchType] = [.i35, .i40, .i47, .i55, .i58Full]
+    /// swift4.2后可以去掉
+    static let all: [InchType] = [.i35, .i40, .i47, .i55, .i58Full, .i61Full, i65Full]
 }
 
 extension InchType: Equatable {
@@ -120,6 +129,8 @@ protocol Inchable {
     func i47(_ value: Self) -> Self
     func i55(_ value: Self) -> Self
     func i58full(_ value: Self) -> Self
+    func i61full(_ value: Self) -> Self
+    func i65full(_ value: Self) -> Self
     
     func w320(_ value: Self) -> Self
     func w375(_ value: Self) -> Self
@@ -142,6 +153,15 @@ extension Inchable {
     }
     func i58full(_ value: Self) -> Self {
         return matching(type: .i58Full, value)
+    }
+    func i61full(_ value: Self) -> Self {
+        return matching(type: .i61Full, value)
+    }
+    func i65full(_ value: Self) -> Self {
+        return matching(type: .i65Full, value)
+    }
+    func ifull(_ value: Self) -> Self {
+        return matching(types: [.i58Full, .i61Full, .i65Full], value)
     }
     
     func w320(_ value: Self) -> Self {
@@ -168,9 +188,6 @@ extension Inchable {
         return range ~= .current ? value : self
     }
     private func matching(_ range: ClosedRange<InchType>, _ value: Self) -> Self {
-        return range ~= .current ? value : self
-    }
-    private func matching(_ range: CountableRange<InchType>, _ value: Self) -> Self {
         return range ~= .current ? value : self
     }
 }
