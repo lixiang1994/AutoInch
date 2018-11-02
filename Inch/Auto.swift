@@ -105,7 +105,7 @@ extension NSLayoutConstraint {
         set {
             guard newValue else { return }
             
-            constant = constant.auto()
+            constant = adapt(origin: constant)
         }
     }
 }
