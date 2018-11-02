@@ -12,104 +12,108 @@
 //
 
 import Foundation
+
 #if os(iOS)
+
 import UIKit
 
 postfix operator <~
 postfix operator >~
-postfix func <~ (l: InchType) -> [InchType] {
+postfix func <~ (l: Inch.Phone) -> [Inch.Phone] {
     guard l.rawValue >= 0 else { return [] }
-    return Array(InchType.all[l.rawValue ..< InchType.all.count])
+    return Array(Inch.Phone.allCases[l.rawValue ..< Inch.Phone.allCases.count])
 }
-postfix func >~ (l: InchType) -> [InchType] {
-    guard l.rawValue < InchType.all.count else { return InchType.all }
-    return Array(InchType.all[0 ... l.rawValue])
+postfix func >~ (l: Inch.Phone) -> [Inch.Phone] {
+    guard l.rawValue < Inch.Phone.allCases.count else { return Inch.Phone.allCases }
+    return Array(Inch.Phone.allCases[0 ... l.rawValue])
 }
 
 typealias InchNumber = CGFloat
 
-enum InchType: Int {
-    case unknown = -1
-    case i35
-    case i40
-    case i47
-    case i55
-    case i58Full
-    case i61Full
-    case i65Full
+enum Inch { }
+
+extension Inch {
     
-    var width: InchNumber {
-        switch self {
-        case .unknown:  return 0
-        case .i35:      return 320
-        case .i40:      return 320
-        case .i47:      return 375
-        case .i55:      return 414
-        case .i58Full:  return 375
-        case .i61Full:  return 414
-        case .i65Full:  return 414
-        }
-    }
-    
-    var height: InchNumber {
-        switch self {
-        case .unknown:  return 0
-        case .i35:      return 480
-        case .i40:      return 568
-        case .i47:      return 667
-        case .i55:      return 736
-        case .i58Full:  return 812
-        case .i61Full:  return 896
-        case .i65Full:  return 896
-        }
-    }
-    
-    private var size: CGSize { return CGSize(width: width, height: height) }
-    
-    static func type(size: CGSize) -> InchType {
-        let width = min(size.width, size.height)
-        let height = max(size.width, size.height)
-        let size = CGSize(width: width, height: height)
+    enum Phone: Int, CaseIterable {
+        case unknown = -1
+        case i35
+        case i40
+        case i47
+        case i55
+        case i58Full
+        case i61Full
+        case i65Full
         
-        switch size {
-        case InchType.i35.size:     return .i35
-        case InchType.i40.size:     return .i40
-        case InchType.i47.size:     return .i47
-        case InchType.i55.size:     return .i55
-        case InchType.i58Full.size: return .i58Full
-        case InchType.i61Full.size: return .i61Full
-        case InchType.i65Full.size: return .i65Full
-        default:                    return .unknown
+        var width: InchNumber {
+            switch self {
+            case .unknown:  return 0
+            case .i35:      return 320
+            case .i40:      return 320
+            case .i47:      return 375
+            case .i55:      return 414
+            case .i58Full:  return 375
+            case .i61Full:  return 414
+            case .i65Full:  return 414
+            }
         }
+        
+        var height: InchNumber {
+            switch self {
+            case .unknown:  return 0
+            case .i35:      return 480
+            case .i40:      return 568
+            case .i47:      return 667
+            case .i55:      return 736
+            case .i58Full:  return 812
+            case .i61Full:  return 896
+            case .i65Full:  return 896
+            }
+        }
+        
+        private var size: CGSize { return CGSize(width: width, height: height) }
+        
+        static func type(size: CGSize) -> Phone {
+            let width = min(size.width, size.height)
+            let height = max(size.width, size.height)
+            let size = CGSize(width: width, height: height)
+            
+            switch size {
+            case Phone.i35.size:     return .i35
+            case Phone.i40.size:     return .i40
+            case Phone.i47.size:     return .i47
+            case Phone.i55.size:     return .i55
+            case Phone.i58Full.size: return .i58Full
+            case Phone.i61Full.size: return .i61Full
+            case Phone.i65Full.size: return .i65Full
+            default:                    return .unknown
+            }
+        }
+        
+        static let current: Phone = type(size: UIScreen.main.bounds.size)
     }
-    
-    static let current: InchType = type(size: UIScreen.main.bounds.size)
-    
-    /// swift4.2可以去掉
-    static let all: [InchType] = [.i35, .i40, .i47, .i55, .i58Full, .i61Full, i65Full]
 }
 
-extension InchType: Equatable {
-    static func == (lhs: InchType, rhs: InchType) -> Bool {
+extension Inch.Phone: Equatable {
+    static func == (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
-extension InchType: Comparable {
-    static func < (lhs: InchType, rhs: InchType) -> Bool {
+extension Inch.Phone: Comparable {
+    static func < (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 }
 
-extension InchType: Strideable {
+extension Inch.Phone: Strideable {
     typealias Stride = Int
     
-    func distance(to other: InchType) -> Int {
+    func distance(to other: Inch.Phone) -> Int {
         return 1
     }
     
-    func advanced(by n: Int) -> InchType {
-        return InchType(rawValue: n) ?? .unknown
+    func advanced(by n: Int) -> Inch.Phone {
+        return Inch.Phone(rawValue: n) ?? .unknown
     }
 }
 
@@ -174,67 +178,21 @@ extension Inchable {
         return matching(width: 414, value)
     }
     
-    private func matching(type: InchType, _ value: Self) -> Self {
-        return InchType.current == type ? value : self
+    private func matching(type: Inch.Phone, _ value: Self) -> Self {
+        return Inch.Phone.current == type ? value : self
     }
     private func matching(width: InchNumber, _ value: Self) -> Self {
-        return InchType.current.width == width ? value : self
+        return Inch.Phone.current.width == width ? value : self
     }
-    /// 内测方法
-    private func matching(_ types: [InchType], _ value: Self) -> Self {
+    
+    private func matching(_ types: [Inch.Phone], _ value: Self) -> Self {
         return types.contains(.current) ? value : self
     }
-    private func matching(_ range: Range<InchType>, _ value: Self) -> Self {
+    private func matching(_ range: Range<Inch.Phone>, _ value: Self) -> Self {
         return range ~= .current ? value : self
     }
-    private func matching(_ range: ClosedRange<InchType>, _ value: Self) -> Self {
+    private func matching(_ range: ClosedRange<Inch.Phone>, _ value: Self) -> Self {
         return range ~= .current ? value : self
-    }
-}
-
-extension Double {
-    
-    /// 自动比例转换 (基于屏幕宽度)
-    ///
-    /// - Parameter baseWidth: 基准屏幕宽度 默认375
-    /// - Returns: 返回结果
-    func auto(_ baseWidth: Double = 375) -> Double {
-        let screenWidth = Double(UIScreen.main.bounds.width)
-        let screenHeight = Double(UIScreen.main.bounds.height)
-        let width = min(screenWidth, screenHeight)
-        return self * (width / baseWidth)
-    }
-}
-
-extension BinaryInteger {
-    
-    func auto(_ baseWidth: Double = 375) -> Double {
-        let temp = Double("\(self)") ?? 0
-        return temp.auto(baseWidth)
-    }
-    func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
-        let temp = Double("\(self)") ?? 0
-        return temp.auto(baseWidth)
-    }
-    func auto<T: BinaryFloatingPoint>(_ baseWidth: Double = 375) -> T {
-        let temp = Double("\(self)") ?? 0
-        return temp.auto(baseWidth)
-    }
-}
-
-extension BinaryFloatingPoint {
-    
-    func auto(_ baseWidth: Double = 375) -> Double {
-        let temp = Double("\(self)") ?? 0
-        return temp.auto(baseWidth)
-    }
-    func auto<T: BinaryInteger>(_ baseWidth: Double = 375) -> T {
-        let temp = Double("\(self)") ?? 0
-        return T(temp.auto(baseWidth))
-    }
-    func auto<T: BinaryFloatingPoint>(_ baseWidth: Double = 375) -> T {
-        let temp = Double("\(self)") ?? 0
-        return T(temp.auto(baseWidth))
     }
 }
 
