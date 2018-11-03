@@ -46,25 +46,24 @@ Here are some usage examples. All devices are also available as simulators:
 AutoLayout (SnapKit): 
 
 ```swift
-
 private func setupLayout() {
-	cardView.snp.makeConstraints { (make) in
-		make.top.equalTo(16.auto())
-		make.left.right.equalToSuperview().inset(15.auto())
-		make.bottom.equalTo(-26.auto())
-	}
+    cardView.snp.makeConstraints { (make) in
+	make.top.equalTo(16.auto())
+	make.left.right.equalToSuperview().inset(15.auto())
+	make.bottom.equalTo(-26.auto())
+    }
+	
+    lineView.snp.makeConstraints { (make) in
+	make.left.right.equalToSuperview().inset(15.auto())
+	make.top.equalTo(titleLabel.snp.bottom)
+	make.height.equalTo(1)
+    }
         
-	lineView.snp.makeConstraints { (make) in
-		make.left.right.equalToSuperview().inset(15.auto())
-		make.top.equalTo(titleLabel.snp.bottom)
-		make.height.equalTo(1)
-	}
-        
-	titleLabel.snp.makeConstraints { (make) in
-	    make.top.equalToSuperview()
+    titleLabel.snp.makeConstraints { (make) in
+        make.top.equalToSuperview()
         make.left.equalTo(15.auto())
         make.height.equalTo(48.auto())
-	}
+    }
         
     stateLabel.snp.makeConstraints { (make) in
         make.top.equalTo(lineView).offset(10.auto())
