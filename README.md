@@ -98,7 +98,12 @@ private lazy var stateLabel = UILabel().then {
 
 ### Inch
 
-
+```swift
+// default other screen numberOfLines = 0
+// 3.5 inches screen numberOfLines = 1
+// 4.0 inches screen numberOfLines = 2
+label.numberOfLines = 0.i35(1).i40(2)
+```
 
 
 ## Contributing
