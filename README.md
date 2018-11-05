@@ -82,7 +82,7 @@ private lazy var cardView = UIView().then {
 }
 
 private lazy var lineView = UIView().then {
-    $0.backgroundColor = .hex("000000", alpha:0.05)
+    $0.backgroundColor = .hex("000000", alpha: 0.05)
 }
 
 private lazy var titleLabel = UILabel().then {
@@ -98,6 +98,8 @@ private lazy var stateLabel = UILabel().then {
 
 ### Inch
 
+e.g.
+
 ```swift
 // default other screen numberOfLines = 0
 // 3.5 inches screen numberOfLines = 1
@@ -105,6 +107,21 @@ private lazy var stateLabel = UILabel().then {
 label.numberOfLines = 0.i35(1).i40(2)
 ```
 
+all
+
+```swift
+print("this is " +
+    "default"
+    .i35("3.5 inches (iPhone 4, 4s)")
+    .i40("3.5 inches (iPhone 5, 5s, SE)")
+    .i47("3.5 inches (iPhone 6, 7, 8)")
+    .i55("3.5 inches (iPhone 6, 7, 8 Plus)")
+    .ifull("full screen (iPhone X, Xs, XsMax)")
+    .i58full("5.8 inches (iPhone X, Xs)")
+    .i61full("6.1 inches (iPhone XR)")
+    .i65full("6.5 inches (iPhone XsMax)")
+)
+```
 
 ## Contributing
 
