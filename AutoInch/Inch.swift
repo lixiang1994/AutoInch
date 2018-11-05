@@ -70,26 +70,41 @@ extension Inch {
             }
         }
         
-        private var size: CGSize { return CGSize(width: width, height: height) }
-        
-        static func type(size: CGSize) -> Phone {
-            let width = min(size.width, size.height)
-            let height = max(size.width, size.height)
-            let size = CGSize(width: width, height: height)
-            
-            switch size {
-            case Phone.i35.size:     return .i35
-            case Phone.i40.size:     return .i40
-            case Phone.i47.size:     return .i47
-            case Phone.i55.size:     return .i55
-            case Phone.i58Full.size: return .i58Full
-            case Phone.i61Full.size: return .i61Full
-            case Phone.i65Full.size: return .i65Full
-            default:                    return .unknown
+        private var scale: CGFloat {
+            switch self {
+            case .unknown:  return 0
+            case .i35:      return 2
+            case .i40:      return 2
+            case .i47:      return 2
+            case .i55:      return 3
+            case .i58Full:  return 3
+            case .i61Full:  return 2
+            case .i65Full:  return 3
             }
         }
         
-        static let current: Phone = type(size: UIScreen.main.bounds.size)
+        private var size: CGSize { return CGSize(width: width, height: height) }
+        private var native: CGSize { return CGSize(width: width * scale, height: height * scale) }
+        
+        static func type(size: CGSize = UIScreen.main.bounds.size,
+                         scale: CGFloat = UIScreen.main.scale) -> Phone {
+            let width = min(size.width, size.height) * scale
+            let height = max(size.width, size.height) * scale
+            let size = CGSize(width: width, height: height)
+            
+            switch size {
+            case Phone.i35.native:     return .i35
+            case Phone.i40.native:     return .i40
+            case Phone.i47.native:     return .i47
+            case Phone.i55.native:     return .i55
+            case Phone.i58Full.native: return .i58Full
+            case Phone.i61Full.native: return .i61Full
+            case Phone.i65Full.native: return .i65Full
+            default:                   return .unknown
+            }
+        }
+        
+        static let current: Phone = type()
     }
 }
 
@@ -125,6 +140,7 @@ extension CGRect: Inchable {}
 extension CGSize: Inchable {}
 extension CGFloat: Inchable {}
 extension CGPoint: Inchable {}
+extension UIEdgeInsets: Inchable {}
 
 protocol Inchable {
     
