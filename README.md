@@ -46,25 +46,24 @@ Here are some usage examples. All devices are also available as simulators:
 AutoLayout (SnapKit): 
 
 ```swift
-
 private func setupLayout() {
-	cardView.snp.makeConstraints { (make) in
-		make.top.equalTo(16.auto())
-		make.left.right.equalToSuperview().inset(15.auto())
-		make.bottom.equalTo(-26.auto())
-	}
+    cardView.snp.makeConstraints { (make) in
+	make.top.equalTo(16.auto())
+	make.left.right.equalToSuperview().inset(15.auto())
+	make.bottom.equalTo(-26.auto())
+    }
+	
+    lineView.snp.makeConstraints { (make) in
+	make.left.right.equalToSuperview().inset(15.auto())
+	make.top.equalTo(titleLabel.snp.bottom)
+	make.height.equalTo(1)
+    }
         
-	lineView.snp.makeConstraints { (make) in
-		make.left.right.equalToSuperview().inset(15.auto())
-		make.top.equalTo(titleLabel.snp.bottom)
-		make.height.equalTo(1)
-	}
-        
-	titleLabel.snp.makeConstraints { (make) in
-	    make.top.equalToSuperview()
+    titleLabel.snp.makeConstraints { (make) in
+        make.top.equalToSuperview()
         make.left.equalTo(15.auto())
         make.height.equalTo(48.auto())
-	}
+    }
         
     stateLabel.snp.makeConstraints { (make) in
         make.top.equalTo(lineView).offset(10.auto())
@@ -83,7 +82,7 @@ private lazy var cardView = UIView().then {
 }
 
 private lazy var lineView = UIView().then {
-    $0.backgroundColor = .hex("000000", alpha:0.05)
+    $0.backgroundColor = .hex("000000", alpha: 0.05)
 }
 
 private lazy var titleLabel = UILabel().then {
@@ -99,8 +98,30 @@ private lazy var stateLabel = UILabel().then {
 
 ### Inch
 
+e.g.
 
+```swift
+// default other screen numberOfLines = 0
+// 3.5 inches screen numberOfLines = 1
+// 4.0 inches screen numberOfLines = 2
+label.numberOfLines = 0.i35(1).i40(2)
+```
 
+all
+
+```swift
+print("this is " +
+    "default"
+    .i35("3.5 inches (iPhone 4, 4s)")
+    .i40("3.5 inches (iPhone 5, 5s, SE)")
+    .i47("3.5 inches (iPhone 6, 7, 8)")
+    .i55("3.5 inches (iPhone 6, 7, 8 Plus)")
+    .ifull("full screen (iPhone X, Xs, XsMax)")
+    .i58full("5.8 inches (iPhone X, Xs)")
+    .i61full("6.1 inches (iPhone XR)")
+    .i65full("6.5 inches (iPhone XsMax)")
+)
+```
 
 ## Contributing
 
