@@ -48,6 +48,18 @@
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="ofd-bt-P1O">
                                                 <rect key="frame" x="55" y="20" width="10" height="10"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="RHU-4G-aFq">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstAttribute="height" constant="10" id="vkw-eU-5Cv">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号码" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="uAx-jP-078">
                                                 <rect key="frame" x="80" y="0.0" width="205" height="50"/>
@@ -55,13 +67,16 @@
                                                 <color key="tintColor" red="1" green="0.82352942230000004" blue="0.1607843041" alpha="1" colorSpace="deviceRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="phoneChangeAction:" destination="KWz-Fp-7pb" eventType="editingChanged" id="7IR-Cf-tgh"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -111,11 +126,18 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="codeChangeAction:" destination="KWz-Fp-7pb" eventType="editingChanged" id="xnr-jQ-RaN"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="giG-ua-1x6" firstAttribute="leading" secondItem="s4e-a5-fer" secondAttribute="leading" constant="15" id="7Nl-Xf-cZg"/>
+                                            <constraint firstItem="giG-ua-1x6" firstAttribute="leading" secondItem="s4e-a5-fer" secondAttribute="leading" constant="15" id="7Nl-Xf-cZg">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="giG-ua-1x6" secondAttribute="bottom" id="FZg-KM-BpB"/>
                                             <constraint firstAttribute="trailing" secondItem="giG-ua-1x6" secondAttribute="trailing" id="S3U-S4-aWb"/>
                                             <constraint firstItem="giG-ua-1x6" firstAttribute="top" secondItem="s4e-a5-fer" secondAttribute="top" id="iLh-gd-ItF"/>
@@ -172,7 +194,7 @@
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-LF-8rn">
                                         <rect key="frame" x="0.0" y="223" width="375" height="80"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s7p-IB-DX4">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7p-IB-DX4">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="16"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -185,7 +207,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="我已阅读并同意">
                                                         <attributes>
-                                                            <color key="NSColor" white="1" alpha="0.49582619863013699" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="NSColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -199,14 +221,14 @@
                                                     </fragment>
                                                     <fragment content="和">
                                                         <attributes>
-                                                            <color key="NSColor" white="1" alpha="0.49582619863013699" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="NSColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
                                                     <fragment content="隐私协议">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.90196078431372551" green="0.74509803921568629" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.90196078431372551" green="0.74509803921568629" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -221,7 +243,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogm-Le-lHh">
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogm-Le-lHh">
                                                 <rect key="frame" x="163" y="31" width="49" height="49"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="49" id="jz1-ju-kxb">
@@ -235,8 +257,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" image="tiktok_sign_done"/>
-                                                <state key="selected" image="tiktok_sign_done"/>
+                                                <state key="normal" backgroundImage="tiktok_sign_done"/>
                                                 <connections>
                                                     <action selector="doneAction:" destination="KWz-Fp-7pb" eventType="touchUpInside" id="CMW-fJ-ErP"/>
                                                 </connections>
@@ -262,7 +283,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他登录方式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAk-aM-afI">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
@@ -271,33 +292,33 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNN-5X-sNC">
                                                 <rect key="frame" x="69.5" y="32" width="236" height="44"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBZ-7u-faC">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBZ-7u-faC">
                                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="iBZ-7u-faC" secondAttribute="height" multiplier="1:1" id="FIz-5O-YwN"/>
                                                         </constraints>
-                                                        <state key="normal" image="tiktok_icon_toutiao"/>
+                                                        <state key="normal" backgroundImage="tiktok_icon_toutiao"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIz-pB-7zv">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIz-pB-7zv">
                                                         <rect key="frame" x="64" y="0.0" width="44" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="AIz-pB-7zv" secondAttribute="height" multiplier="1:1" id="jEB-vJ-Ry2"/>
                                                         </constraints>
-                                                        <state key="normal" image="tiktok_icon_qq"/>
+                                                        <state key="normal" backgroundImage="tiktok_icon_qq"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuf-5y-2Ob">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuf-5y-2Ob">
                                                         <rect key="frame" x="128" y="0.0" width="44" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Vuf-5y-2Ob" secondAttribute="height" multiplier="1:1" id="6Ra-Nq-Gfd"/>
                                                         </constraints>
-                                                        <state key="normal" image="tiktok_icon_wechat"/>
+                                                        <state key="normal" backgroundImage="tiktok_icon_wechat"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLd-hV-ShV">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLd-hV-ShV">
                                                         <rect key="frame" x="192" y="0.0" width="44" height="44"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="PLd-hV-ShV" secondAttribute="height" multiplier="1:1" id="JKs-Ng-d3O"/>
                                                         </constraints>
-                                                        <state key="normal" image="tiktok_icon_sina"/>
+                                                        <state key="normal" backgroundImage="tiktok_icon_sina"/>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -353,7 +374,7 @@
                                         <rect key="frame" x="141" y="314" width="93" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="登录遇到问题?">
-                                            <color key="titleColor" red="0.90196078430000004" green="0.74509803919999995" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.90588235294117647" green="0.74509803919999995" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoTitle" value="YES"/>
@@ -459,7 +480,7 @@
                         <constraints>
                             <constraint firstItem="3ZO-g2-zOx" firstAttribute="leading" secondItem="T2g-cF-Fav" secondAttribute="leading" id="3H3-qb-dE8"/>
                             <constraint firstItem="IZb-9G-bxz" firstAttribute="leading" secondItem="T2g-cF-Fav" secondAttribute="leading" id="DdC-Fx-f2L"/>
-                            <constraint firstItem="T2g-cF-Fav" firstAttribute="bottom" secondItem="IZb-9G-bxz" secondAttribute="bottom" id="Ltq-Bk-U7U"/>
+                            <constraint firstAttribute="bottom" secondItem="IZb-9G-bxz" secondAttribute="bottom" id="Ltq-Bk-U7U"/>
                             <constraint firstItem="T2g-cF-Fav" firstAttribute="trailing" secondItem="IZb-9G-bxz" secondAttribute="trailing" id="NE8-3W-Gx6"/>
                             <constraint firstItem="T2g-cF-Fav" firstAttribute="trailing" secondItem="3ZO-g2-zOx" secondAttribute="trailing" id="SqP-LZ-x2K"/>
                             <constraint firstItem="T2g-cF-Fav" firstAttribute="top" secondItem="3ZO-g2-zOx" secondAttribute="top" id="dfy-7N-M9z"/>
@@ -511,10 +532,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-hu-BCU">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Bbe-7s-OXE"/>
-                                            <constraint firstAttribute="width" constant="44" id="oGH-Xa-UxE"/>
+                                            <constraint firstAttribute="width" constant="54" id="oGH-Xa-UxE"/>
                                         </constraints>
                                         <state key="normal" image="tiktok_back"/>
                                         <connections>

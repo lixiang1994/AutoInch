@@ -21,15 +21,14 @@ class TikTokPhoneLoginViewController: UIViewController {
     
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
-    
     @IBOutlet weak var areaButton: UIButton!
     @IBOutlet weak var captchaButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
-    
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var otherView: UIView!
     
-    private var phone: String = ""
+    private var phone = ""
+    private var isLogging = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,15 +36,7 @@ class TikTokPhoneLoginViewController: UIViewController {
         setup()
         setupNotification()
         
-        view.layoutIfNeeded()
-        phoneTextField.addTarget(self, action: #selector(phoneTextFieldAction), for: .editingChanged)
         phoneTextField.becomeFirstResponder()
-        
-        if let button = phoneTextField.value(forKey: "_clearButton") as? UIButton {
-            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
-            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .highlighted)
-        }
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,6 +47,10 @@ class TikTokPhoneLoginViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard !isLogging else {
+            return
+        }
+        
         view.endEditing(true)
         dismiss(animated: true)
     }
@@ -85,10 +80,39 @@ class TikTokPhoneLoginViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: UIButton) {
+        guard sender.alpha == 1 else {
+            return
+        }
+        guard !isLogging else {
+            return
+        }
         
+        sender.setBackgroundImage(#imageLiteral(resourceName: "tiktok_sign_loading"), for: .normal)
+        
+        let animation = CABasicAnimation()
+        animation.keyPath = "transform.rotation.z"
+        animation.fromValue = 0
+        animation.toValue = 360 * CGFloat(CGFloat.pi / 180)
+        animation.duration = 0.9
+        animation.repeatCount = HUGE
+        animation.isRemovedOnCompletion = false
+        sender.layer.add(animation, forKey: "loading")
+        
+        logging { [weak self] (result) in
+            guard let self = self else { return }
+            
+            if result {
+                self.view.endEditing(true)
+                self.dismiss(animated: true)
+                
+            } else {
+                sender.layer.removeAllAnimations()
+                sender.setBackgroundImage(#imageLiteral(resourceName: "tiktok_sign_done"), for: .normal)
+            }
+        }
     }
     
-    @objc private func phoneTextFieldAction(_ sender: UITextField) {
+    @IBAction func phoneChangeAction(_ sender: UITextField) {
         guard let text = sender.text else {
             return
         }
@@ -113,11 +137,25 @@ class TikTokPhoneLoginViewController: UIViewController {
         }
         
         UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(0.2)
+        UIView.setAnimationDuration(0.25)
         captchaButton.isEnabled = !text.isEmpty
         loginView.alpha = text.isEmpty ? 0 : 1
         otherView.alpha = text.isEmpty ? 1 : 0
         UIView.commitAnimations()
+        
+        checkDoneStatus()
+    }
+    
+    @IBAction func codeChangeAction(_ sender: UITextField) {
+        guard let text = sender.text else {
+            return
+        }
+        
+        if text.count >= 6 {
+            sender.text = String(text.prefix(6))
+        }
+        
+        checkDoneStatus()
     }
 }
 
@@ -125,16 +163,49 @@ extension TikTokPhoneLoginViewController {
     
     private func setup() {
         view.layer.insertSublayer(layer, at: 0)
+        view.layoutIfNeeded()
+        
+        if let button = phoneTextField.value(forKey: "_clearButton") as? UIButton {
+            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .highlighted)
+        }
     }
     
     private func setupNotification() {
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillChangeFrame),
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
+    }
+    
+    private func checkDoneStatus() {
+        guard
+            let phone = phoneTextField.text,
+            let code = codeTextField.text else {
+            return
+        }
+        
+        let ok = !phone.isEmpty && !code.isEmpty
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.25)
+        doneButton.alpha = ok ? 1.0 : 0.5
+        UIView.commitAnimations()
+    }
+}
+
+extension TikTokPhoneLoginViewController {
+    
+    private func logging(_ completion: @escaping (Bool) -> Void) {
+        isLogging = true
+        // 假装请求登录
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.isLogging = false
+            // 随机返回成功 or 失败
+            let result = Int.random(in: 0...1) == 0 ? true : false
+            completion(result)
+        }
     }
 }
 
