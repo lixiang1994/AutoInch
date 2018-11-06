@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kPc-c3-SDG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WXh-D8-1rU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,10 +64,11 @@
                             <outlet property="delegate" destination="kPc-c3-SDG" id="H2R-Iv-DBy"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="bBq-W4-fyg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9Q-c9-IJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="318" y="125"/>
+            <point key="canvasLocation" x="1256.8" y="124.58770614692655"/>
         </scene>
         <!--TikTok-->
         <scene sceneID="lYi-8A-2jF">
@@ -75,7 +76,25 @@
                 <viewControllerPlaceholder storyboardName="TikTok" id="NCI-9y-Ah5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbW-bX-8Od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="-163"/>
+            <point key="canvasLocation" x="1867.2" y="-163.71814092953525"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Iwf-jM-kYn">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WXh-D8-1rU" customClass="NavigationController" customModule="AutoInchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ooo-eW-xj6">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kPc-c3-SDG" kind="relationship" relationship="rootViewController" id="Bse-MD-uRM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDC-Ob-2Yj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="317.60000000000002" y="124.58770614692655"/>
         </scene>
     </scenes>
 </document>

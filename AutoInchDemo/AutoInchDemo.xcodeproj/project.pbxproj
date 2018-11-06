@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91AE68D219199D4005A8286 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91AE68C219199D4005A8286 /* NavigationController.swift */; };
 		C9E8AED1218DADD600332D5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8AED0218DADD600332D5C /* AppDelegate.swift */; };
 		C9E8AED3218DADD600332D5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8AED2218DADD600332D5C /* ViewController.swift */; };
 		C9E8AED6218DADD600332D5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E8AED4218DADD600332D5C /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C91AE68C219199D4005A8286 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C9E8AECD218DADD600332D5C /* AutoInchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoInchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E8AED0218DADD600332D5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9E8AED2218DADD600332D5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				C9E8AEE2218DAE1600332D5C /* AutoInch */,
 				C9E8AED0218DADD600332D5C /* AppDelegate.swift */,
 				C9E8AED2218DADD600332D5C /* ViewController.swift */,
+				C91AE68C219199D4005A8286 /* NavigationController.swift */,
 				C9E8AED4218DADD600332D5C /* Main.storyboard */,
 				C9E8AED7218DADD800332D5C /* Assets.xcassets */,
 				C9E8AED9218DADD800332D5C /* LaunchScreen.storyboard */,
@@ -202,6 +205,7 @@
 				C9E8AED1218DADD600332D5C /* AppDelegate.swift in Sources */,
 				C9E8AEF2219019BE00332D5C /* TikTokPasswordLoginViewController.swift in Sources */,
 				C9E8AEED2190018100332D5C /* TikTokPhoneLoginViewController.swift in Sources */,
+				C91AE68D219199D4005A8286 /* NavigationController.swift in Sources */,
 				C9E8AEF42190339400332D5C /* Then.swift in Sources */,
 				C9E8AEE5218DAE1600332D5C /* Auto.swift in Sources */,
 				C9E8AEF0219001E000332D5C /* StoryBoard.swift in Sources */,

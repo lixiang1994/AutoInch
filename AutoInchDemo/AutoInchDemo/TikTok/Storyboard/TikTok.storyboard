@@ -462,7 +462,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="6ht-tp-RfF" kind="show" id="XaY-0k-xrl"/>
+                                            <segue destination="q8B-lk-b8L" kind="show" identifier="password" id="0Ao-im-7Ld"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -501,12 +501,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0V-nt-dbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="-206"/>
+            <point key="canvasLocation" x="897" y="-205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1iE-Ne-C7N">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" id="Zwl-Z8-afU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" navigationBarHidden="YES" id="Zwl-Z8-afU" customClass="NavigationController" customModule="AutoInchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x5o-4Y-0sI">
                         <autoresizingMask key="autoresizingMask"/>
@@ -521,54 +521,342 @@
             <point key="canvasLocation" x="136.80000000000001" y="-204.64767616191907"/>
         </scene>
         <!--Tik Tok Password Login View Controller-->
-        <scene sceneID="Tsu-UX-S7x">
+        <scene sceneID="1Om-pN-HlF">
             <objects>
-                <viewController storyboardIdentifier="TikTokPasswordLoginViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="6ht-tp-RfF" customClass="TikTokPasswordLoginViewController" customModule="AutoInchDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bxS-hM-40v">
+                <viewController storyboardIdentifier="TikTokPasswordLoginViewController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" hidesBottomBarWhenPushed="YES" id="q8B-lk-b8L" customClass="TikTokPasswordLoginViewController" customModule="AutoInchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Tpo-Ce-1sT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFu-dF-4j0">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Yt-gE-ds5">
+                                <rect key="frame" x="0.0" y="309" width="375" height="358"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号登录有助于您快速找到好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSz-O0-nvX">
+                                        <rect key="frame" x="72.5" y="20" width="230" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pw1-Rz-8iZ">
+                                        <rect key="frame" x="40" y="68" width="295" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1d-Yq-1lO">
+                                                <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
+                                                <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="16" maxY="0.0"/>
+                                                <state key="normal" title="+86"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoTitle" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoImage" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoContentInsets" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="areaAction:" destination="q8B-lk-b8L" eventType="touchUpInside" id="qEQ-Oo-bBK"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="hdf-bw-8Je">
+                                                <rect key="frame" x="55" y="20" width="10" height="10"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="24w-Ws-5du">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="10" id="7b5-x5-72b">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                </constraints>
+                                            </imageView>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号码" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7Gh-dJ-EXo">
+                                                <rect key="frame" x="80" y="0.0" width="205" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="1" green="0.82352942230000004" blue="0.1607843041" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="phoneChangeAction:" destination="q8B-lk-b8L" eventType="editingChanged" id="8pV-dC-NCP"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="hdf-bw-8Je" firstAttribute="centerY" secondItem="h1d-Yq-1lO" secondAttribute="centerY" id="54N-de-w8X"/>
+                                            <constraint firstItem="hdf-bw-8Je" firstAttribute="trailing" secondItem="h1d-Yq-1lO" secondAttribute="trailing" id="Dge-AB-Wzn"/>
+                                            <constraint firstItem="h1d-Yq-1lO" firstAttribute="height" secondItem="Pw1-Rz-8iZ" secondAttribute="height" id="K70-wV-jEc"/>
+                                            <constraint firstAttribute="height" constant="50" id="MCM-YG-Y7m">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstItem="h1d-Yq-1lO" firstAttribute="leading" secondItem="Pw1-Rz-8iZ" secondAttribute="leading" id="e7h-8b-l06"/>
+                                            <constraint firstItem="7Gh-dJ-EXo" firstAttribute="leading" secondItem="h1d-Yq-1lO" secondAttribute="trailing" constant="15" id="ezh-jn-rVk">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstItem="7Gh-dJ-EXo" firstAttribute="top" secondItem="Pw1-Rz-8iZ" secondAttribute="top" id="gSv-Rd-gbh"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Gh-dJ-EXo" secondAttribute="trailing" constant="10" id="o1s-aT-yin">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstItem="h1d-Yq-1lO" firstAttribute="centerY" secondItem="Pw1-Rz-8iZ" secondAttribute="centerY" id="r62-zr-OoU"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Gh-dJ-EXo" secondAttribute="bottom" id="z96-6V-GJZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Yh-TI-cWb">
+                                        <rect key="frame" x="40" y="123" width="295" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入账号密码" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ZgJ-X1-ozS">
+                                                <rect key="frame" x="15" y="0.0" width="270" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="1" green="0.82352942230000004" blue="0.1607843041" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="password"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="passwordChangeAction:" destination="q8B-lk-b8L" eventType="editingChanged" id="JED-F7-gaR"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ZgJ-X1-ozS" firstAttribute="top" secondItem="5Yh-TI-cWb" secondAttribute="top" id="Bhj-0Y-P7e"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZgJ-X1-ozS" secondAttribute="bottom" id="GwP-DG-al5"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZgJ-X1-ozS" secondAttribute="trailing" constant="10" id="KM7-E4-lfs">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstAttribute="height" constant="50" id="dGH-DS-vfd">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstItem="ZgJ-X1-ozS" firstAttribute="leading" secondItem="5Yh-TI-cWb" secondAttribute="leading" constant="15" id="whd-nf-a7l">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Nx-H1-YZ3">
+                                        <rect key="frame" x="0.0" y="223" width="375" height="80"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-BE-Y4H">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="GxF-Tw-EkT">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                </constraints>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="我已阅读并同意">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="用户协议">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.90196078431372551" green="0.74509803921568629" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="和">
+                                                        <attributes>
+                                                            <color key="NSColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="隐私协议">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.90196078431372551" green="0.74509803921568629" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                        <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoFont" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textView>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjg-fB-CPD">
+                                                <rect key="frame" x="163" y="31" width="49" height="49"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="49" id="adF-Bc-Tq5">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstAttribute="height" constant="49" id="nDg-cS-5f7">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="tiktok_sign_done"/>
+                                                <connections>
+                                                    <action selector="doneAction:" destination="q8B-lk-b8L" eventType="touchUpInside" id="KXr-NM-NXi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="E2T-BE-Y4H" secondAttribute="trailing" id="PWW-lp-DUr"/>
+                                            <constraint firstItem="mjg-fB-CPD" firstAttribute="centerX" secondItem="8Nx-H1-YZ3" secondAttribute="centerX" id="Wjd-ro-QEi"/>
+                                            <constraint firstAttribute="bottom" secondItem="mjg-fB-CPD" secondAttribute="bottom" id="bff-7b-Rty"/>
+                                            <constraint firstItem="E2T-BE-Y4H" firstAttribute="leading" secondItem="8Nx-H1-YZ3" secondAttribute="leading" id="cfD-6n-Qdn"/>
+                                            <constraint firstItem="mjg-fB-CPD" firstAttribute="top" secondItem="E2T-BE-Y4H" secondAttribute="bottom" constant="15" id="dGx-d0-hmP">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstItem="E2T-BE-Y4H" firstAttribute="top" secondItem="8Nx-H1-YZ3" secondAttribute="top" id="zTc-kQ-5rk"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-mz-U0x">
+                                        <rect key="frame" x="141" y="314" width="93" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="登录遇到问题?">
+                                            <color key="titleColor" red="0.90588235289999997" green="0.74509803919999995" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoTitle" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5Yh-TI-cWb" firstAttribute="width" secondItem="Pw1-Rz-8iZ" secondAttribute="width" id="9an-4t-yfy"/>
+                                    <constraint firstItem="8Nx-H1-YZ3" firstAttribute="top" secondItem="5Yh-TI-cWb" secondAttribute="bottom" constant="50" id="Af5-pe-RhW">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="8Nx-H1-YZ3" secondAttribute="trailing" id="AuC-GS-Y7h"/>
+                                    <constraint firstItem="5hu-mz-U0x" firstAttribute="centerX" secondItem="5Yt-gE-ds5" secondAttribute="centerX" id="Nvb-6y-jcb"/>
+                                    <constraint firstItem="5hu-mz-U0x" firstAttribute="top" secondItem="8Nx-H1-YZ3" secondAttribute="bottom" constant="11" id="Q1Q-uD-I5L">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="GSz-O0-nvX" firstAttribute="centerX" secondItem="5Yt-gE-ds5" secondAttribute="centerX" id="UPh-Ge-VOE"/>
+                                    <constraint firstItem="Pw1-Rz-8iZ" firstAttribute="leading" secondItem="5Yt-gE-ds5" secondAttribute="leading" constant="40" id="Ua3-GW-49V"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pw1-Rz-8iZ" secondAttribute="trailing" constant="40" id="YA9-fc-rE3"/>
+                                    <constraint firstItem="8Nx-H1-YZ3" firstAttribute="leading" secondItem="5Yt-gE-ds5" secondAttribute="leading" id="dp3-ao-C9S"/>
+                                    <constraint firstItem="Pw1-Rz-8iZ" firstAttribute="top" secondItem="GSz-O0-nvX" secondAttribute="bottom" constant="30" id="jm0-L2-cnf">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="GSz-O0-nvX" firstAttribute="top" secondItem="5Yt-gE-ds5" secondAttribute="top" constant="20" id="py8-P6-q4z">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="5Yh-TI-cWb" firstAttribute="leading" secondItem="Pw1-Rz-8iZ" secondAttribute="leading" id="qKr-DJ-XXb"/>
+                                    <constraint firstItem="5Yh-TI-cWb" firstAttribute="top" secondItem="Pw1-Rz-8iZ" secondAttribute="bottom" constant="5" id="r7D-9z-GqQ">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="bottom" secondItem="5hu-mz-U0x" secondAttribute="bottom" constant="15" id="yvc-0R-esO">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o1A-9q-zBd">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-hu-BCU">
-                                        <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-cY-9J7">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="Bbe-7s-OXE"/>
-                                            <constraint firstAttribute="width" constant="54" id="oGH-Xa-UxE"/>
+                                            <constraint firstAttribute="width" constant="44" id="mty-7C-egU"/>
+                                            <constraint firstAttribute="height" constant="44" id="rf3-48-MtD"/>
                                         </constraints>
                                         <state key="normal" image="tiktok_back"/>
                                         <connections>
-                                            <action selector="backAction" destination="6ht-tp-RfF" eventType="touchUpInside" id="hiE-IR-Exe"/>
+                                            <action selector="backAction" destination="q8B-lk-b8L" eventType="touchUpInside" id="zsH-z5-eOu"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0MT-CO-A7r"/>
-                                    <constraint firstItem="PeY-hu-BCU" firstAttribute="leading" secondItem="aFu-dF-4j0" secondAttribute="leading" id="acA-g1-aJG"/>
-                                    <constraint firstItem="PeY-hu-BCU" firstAttribute="centerY" secondItem="aFu-dF-4j0" secondAttribute="centerY" id="jkV-q9-MgC"/>
+                                    <constraint firstItem="QVr-cY-9J7" firstAttribute="leading" secondItem="o1A-9q-zBd" secondAttribute="leading" id="AL5-QR-gGt"/>
+                                    <constraint firstItem="QVr-cY-9J7" firstAttribute="centerY" secondItem="o1A-9q-zBd" secondAttribute="centerY" id="RmZ-90-fKc"/>
+                                    <constraint firstAttribute="height" constant="44" id="gI5-Rd-cz7"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="o61-va-43Z" firstAttribute="trailing" secondItem="aFu-dF-4j0" secondAttribute="trailing" id="Fin-wt-Nin"/>
-                            <constraint firstItem="aFu-dF-4j0" firstAttribute="leading" secondItem="o61-va-43Z" secondAttribute="leading" id="OHI-Ca-tZu"/>
-                            <constraint firstItem="o61-va-43Z" firstAttribute="top" secondItem="aFu-dF-4j0" secondAttribute="top" id="PVO-gH-iyC"/>
+                            <constraint firstItem="PRO-un-Aha" firstAttribute="trailing" secondItem="o1A-9q-zBd" secondAttribute="trailing" id="0lf-J3-7v9"/>
+                            <constraint firstItem="o1A-9q-zBd" firstAttribute="leading" secondItem="PRO-un-Aha" secondAttribute="leading" id="FzF-15-XOv"/>
+                            <constraint firstItem="PRO-un-Aha" firstAttribute="top" secondItem="o1A-9q-zBd" secondAttribute="top" id="PqS-ih-hJF"/>
+                            <constraint firstItem="5Yt-gE-ds5" firstAttribute="leading" secondItem="PRO-un-Aha" secondAttribute="leading" id="iye-pb-Yin"/>
+                            <constraint firstItem="PRO-un-Aha" firstAttribute="trailing" secondItem="5Yt-gE-ds5" secondAttribute="trailing" id="qQG-j4-HWM"/>
+                            <constraint firstAttribute="bottom" secondItem="5Yt-gE-ds5" secondAttribute="bottom" id="vT3-aW-nX9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="o61-va-43Z"/>
+                        <viewLayoutGuide key="safeArea" id="PRO-un-Aha"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OXc-MM-jUN"/>
+                    <navigationItem key="navigationItem" id="W92-au-qOT"/>
+                    <connections>
+                        <outlet property="areaButton" destination="h1d-Yq-1lO" id="JoI-rA-VaH"/>
+                        <outlet property="bottomConstraint" destination="vT3-aW-nX9" id="Ao9-bE-f4O"/>
+                        <outlet property="doneButton" destination="mjg-fB-CPD" id="PjZ-xb-6TU"/>
+                        <outlet property="passwordTextField" destination="ZgJ-X1-ozS" id="f2R-aP-mZu"/>
+                        <outlet property="phoneTextField" destination="7Gh-dJ-EXo" id="4fr-Tf-iHT"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gdM-rL-ixI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yh4-gX-ex6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="-205"/>
+            <point key="canvasLocation" x="1657" y="-206"/>
         </scene>
     </scenes>
     <resources>
         <image name="tiktok_arrow_down" width="10" height="10"/>
-        <image name="tiktok_back" width="24" height="24"/>
+        <image name="tiktok_back" width="27" height="27"/>
         <image name="tiktok_close" width="27" height="27"/>
         <image name="tiktok_icon_qq" width="44" height="44"/>
         <image name="tiktok_icon_sina" width="44" height="44"/>

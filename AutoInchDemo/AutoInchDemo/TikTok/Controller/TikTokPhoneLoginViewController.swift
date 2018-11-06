@@ -11,8 +11,8 @@ import UIKit
 class TikTokPhoneLoginViewController: UIViewController {
 
     private lazy var layer = CAGradientLayer().then {
-        let colors: [CGColor] =  [#colorLiteral(red: 0.462745098, green: 0.4588235294, blue: 0.9607843137, alpha: 1), #colorLiteral(red: 0.5647058824, green: 0.2784313725, blue: 1, alpha: 1), #colorLiteral(red: 0.6588235294, green: 0.1803921569, blue: 0.9019607843, alpha: 1)]
-        $0.locations = [0.0, 0.3, 1.0]
+        let colors: [CGColor] =  [#colorLiteral(red: 0.4588235294, green: 0.4509803922, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.5215686275, green: 0.337254902, blue: 0.9529411765, alpha: 1), #colorLiteral(red: 0.6156862745, green: 0.1882352941, blue: 0.9294117647, alpha: 1), #colorLiteral(red: 0.6156862745, green: 0.1882352941, blue: 0.9294117647, alpha: 1)]
+        $0.locations = [0.0, 0.4, 0.8, 1.0]
         $0.colors = colors
         $0.opacity = 0.8
     }
@@ -43,6 +43,19 @@ class TikTokPhoneLoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         layer.frame = view.bounds
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "password":
+            guard let controller = segue.destination as? TikTokPasswordLoginViewController else {
+                return
+            }
+            
+            controller.phone = phone
+            
+        default: break
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,6 +93,11 @@ class TikTokPhoneLoginViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: UIButton) {
+        guard
+            let phone = phoneTextField.text,
+            let code = codeTextField.text else {
+            return
+        }
         guard sender.alpha == 1 else {
             return
         }
@@ -98,7 +116,8 @@ class TikTokPhoneLoginViewController: UIViewController {
         animation.isRemovedOnCompletion = false
         sender.layer.add(animation, forKey: "loading")
         
-        logging { [weak self] (result) in
+        logging(phone.trimmingCharacters(in: .whitespaces), code) {
+            [weak self] (result) in
             guard let self = self else { return }
             
             if result {
@@ -167,7 +186,7 @@ extension TikTokPhoneLoginViewController {
         
         if let button = phoneTextField.value(forKey: "_clearButton") as? UIButton {
             button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
-            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .highlighted)
+            button.adjustsImageWhenHighlighted = false
         }
     }
     
@@ -187,7 +206,7 @@ extension TikTokPhoneLoginViewController {
             return
         }
         
-        let ok = !phone.isEmpty && !code.isEmpty
+        let ok = phone.count == 13 && code.count == 6
         UIView.beginAnimations("", context: nil)
         UIView.setAnimationDuration(0.25)
         doneButton.alpha = ok ? 1.0 : 0.5
@@ -197,7 +216,9 @@ extension TikTokPhoneLoginViewController {
 
 extension TikTokPhoneLoginViewController {
     
-    private func logging(_ completion: @escaping (Bool) -> Void) {
+    private func logging(_ phone: String,
+                         _ code: String,
+                         _ completion: @escaping (Bool) -> Void) {
         isLogging = true
         // 假装请求登录
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
