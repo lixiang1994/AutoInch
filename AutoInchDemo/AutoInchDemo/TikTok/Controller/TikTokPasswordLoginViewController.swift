@@ -13,7 +13,7 @@ class TikTokPasswordLoginViewController: UIViewController {
     var phone = ""
     
     private lazy var layer = CAGradientLayer().then {
-        let colors: [CGColor] =  [#colorLiteral(red: 0.4588235294, green: 0.4509803922, blue: 0.9490196078, alpha: 1), #colorLiteral(red: 0.5215686275, green: 0.337254902, blue: 0.9529411765, alpha: 1), #colorLiteral(red: 0.6156862745, green: 0.1882352941, blue: 0.9294117647, alpha: 1), #colorLiteral(red: 0.6156862745, green: 0.1882352941, blue: 0.9294117647, alpha: 1)]
+        let colors: [CGColor] =  [#colorLiteral(red: 0.4727493525, green: 0.4444301128, blue: 0.9979013801, alpha: 1), #colorLiteral(red: 0.5695798397, green: 0.2927905917, blue: 0.9881889224, alpha: 1), #colorLiteral(red: 0.6905713677, green: 0.1041976586, blue: 0.9767265916, alpha: 1), #colorLiteral(red: 0.7510715127, green: 0.002722046804, blue: 0.9681376815, alpha: 1)]
         $0.locations = [0.0, 0.4, 0.8, 1.0]
         $0.colors = colors
         $0.opacity = 1.0
@@ -27,6 +27,7 @@ class TikTokPasswordLoginViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     
     private var isLogging = false
+    private var isDidAppear = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,23 @@ class TikTokPasswordLoginViewController: UIViewController {
         setupNotification()
     }
     
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        
+        isDidAppear = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        phoneTextField.becomeFirstResponder()
+        isDidAppear = true
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        if phone.count < 13 {
+            phoneTextField.becomeFirstResponder()
+        } else {
+            passwordTextField.becomeFirstResponder()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -158,6 +172,8 @@ class TikTokPasswordLoginViewController: UIViewController {
 extension TikTokPasswordLoginViewController {
     
     private func setup() {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
         view.layer.insertSublayer(layer, at: 0)
         view.layoutIfNeeded()
         
@@ -189,7 +205,7 @@ extension TikTokPasswordLoginViewController {
             return
         }
         
-        let ok = phone.count == 13 && password.count == 6
+        let ok = phone.count == 13 && !password.isEmpty
         UIView.beginAnimations("", context: nil)
         UIView.setAnimationDuration(0.25)
         doneButton.alpha = ok ? 1.0 : 0.5
@@ -227,7 +243,10 @@ extension TikTokPasswordLoginViewController {
             let curveRaw = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int,
             let curve = UIView.AnimationCurve(rawValue: curveRaw),
             let end = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-                return
+            return
+        }
+        guard isDidAppear else {
+            return
         }
         
         bottomConstraint.constant = view.bounds.height - end.minY
