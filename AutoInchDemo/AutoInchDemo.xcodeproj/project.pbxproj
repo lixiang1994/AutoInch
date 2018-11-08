@@ -70,9 +70,9 @@
 		C9E8AECF218DADD600332D5C /* AutoInchDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8AEE2218DAE1600332D5C /* AutoInch */,
 				C9E8AEEE219001B700332D5C /* Utils */,
 				C9E8AEE7218FFFD800332D5C /* TikTok */,
-				C9E8AEE2218DAE1600332D5C /* AutoInch */,
 				C9E8AED0218DADD600332D5C /* AppDelegate.swift */,
 				C9E8AED2218DADD600332D5C /* ViewController.swift */,
 				C91AE68C219199D4005A8286 /* NavigationController.swift */,
@@ -358,6 +358,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GNXU2LRUU;
 				INFOPLIST_FILE = AutoInchDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,6 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GNXU2LRUU;
 				INFOPLIST_FILE = AutoInchDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

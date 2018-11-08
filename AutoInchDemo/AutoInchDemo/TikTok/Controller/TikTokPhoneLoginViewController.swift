@@ -14,7 +14,7 @@ class TikTokPhoneLoginViewController: UIViewController {
         let colors: [CGColor] =  [#colorLiteral(red: 0.4727493525, green: 0.4444301128, blue: 0.9979013801, alpha: 1), #colorLiteral(red: 0.5695798397, green: 0.2927905917, blue: 0.9881889224, alpha: 1), #colorLiteral(red: 0.6905713677, green: 0.1041976586, blue: 0.9767265916, alpha: 1), #colorLiteral(red: 0.7510715127, green: 0.002722046804, blue: 0.9681376815, alpha: 1)]
         $0.locations = [0.0, 0.4, 0.8, 1.0]
         $0.colors = colors
-        $0.opacity = 0.8
+        $0.opacity = 0.9
     }
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
