@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-9G-bxz">
-                                <rect key="frame" x="0.0" y="310" width="375" height="357"/>
+                                <rect key="frame" x="0.0" y="330" width="375" height="337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号登录有助于您快速找到好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUL-PL-U2e">
-                                        <rect key="frame" x="72.5" y="20" width="230" height="18"/>
+                                        <rect key="frame" x="72.5" y="0.0" width="230" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mS-DI-AhW">
-                                        <rect key="frame" x="40" y="68" width="295" height="50"/>
+                                        <rect key="frame" x="40" y="48" width="295" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h4-rE-hUS">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
@@ -111,7 +111,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4e-a5-fer">
-                                        <rect key="frame" x="40" y="122" width="183" height="50"/>
+                                        <rect key="frame" x="40" y="102" width="183" height="50"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入短信验证码" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="giG-ua-1x6">
                                                 <rect key="frame" x="15" y="0.0" width="168" height="50"/>
@@ -154,7 +154,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38z-ws-owm">
-                                        <rect key="frame" x="225" y="122" width="110" height="50"/>
+                                        <rect key="frame" x="225" y="102" width="110" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GO1-YS-aeN">
                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
@@ -192,7 +192,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-LF-8rn">
-                                        <rect key="frame" x="0.0" y="222" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="202" width="375" height="80"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7p-IB-DX4">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
@@ -277,7 +277,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIp-sC-WMd">
-                                        <rect key="frame" x="0.0" y="222" width="375" height="76"/>
+                                        <rect key="frame" x="0.0" y="202" width="375" height="76"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他登录方式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAk-aM-afI">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="17"/>
@@ -367,7 +367,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trN-ce-mED">
-                                        <rect key="frame" x="141" y="313" width="93" height="29"/>
+                                        <rect key="frame" x="141" y="293" width="93" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="85l-j5-tih"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="登录遇到问题?">
                                             <color key="titleColor" red="0.90588235294117647" green="0.74509803919999995" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -383,7 +386,7 @@
                                     </constraint>
                                     <constraint firstItem="TIp-sC-WMd" firstAttribute="centerX" secondItem="IZb-9G-bxz" secondAttribute="centerX" id="4rd-mY-cFb"/>
                                     <constraint firstAttribute="trailing" secondItem="8mS-DI-AhW" secondAttribute="trailing" constant="40" id="787-6k-Zwg"/>
-                                    <constraint firstItem="TIp-sC-WMd" firstAttribute="top" secondItem="s4e-a5-fer" secondAttribute="bottom" constant="50" id="7Kh-bc-iUh">
+                                    <constraint firstItem="TIp-sC-WMd" firstAttribute="top" secondItem="s4e-a5-fer" secondAttribute="bottom" priority="999" constant="50" id="7Kh-bc-iUh">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -391,11 +394,7 @@
                                     <constraint firstItem="eFg-LF-8rn" firstAttribute="leading" secondItem="IZb-9G-bxz" secondAttribute="leading" id="DDP-L5-LRW"/>
                                     <constraint firstItem="s4e-a5-fer" firstAttribute="width" secondItem="8mS-DI-AhW" secondAttribute="width" multiplier="0.62" id="Em6-qh-69Q"/>
                                     <constraint firstItem="bUL-PL-U2e" firstAttribute="centerX" secondItem="IZb-9G-bxz" secondAttribute="centerX" id="Gfz-bm-vRi"/>
-                                    <constraint firstItem="bUL-PL-U2e" firstAttribute="top" secondItem="IZb-9G-bxz" secondAttribute="top" constant="20" id="Ggo-cm-zQb">
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </constraint>
+                                    <constraint firstItem="bUL-PL-U2e" firstAttribute="top" secondItem="IZb-9G-bxz" secondAttribute="top" id="Ggo-cm-zQb"/>
                                     <constraint firstItem="38z-ws-owm" firstAttribute="centerY" secondItem="s4e-a5-fer" secondAttribute="centerY" id="HPk-C2-CXa"/>
                                     <constraint firstItem="38z-ws-owm" firstAttribute="trailing" secondItem="8mS-DI-AhW" secondAttribute="trailing" id="K4y-E8-FvR"/>
                                     <constraint firstItem="eFg-LF-8rn" firstAttribute="top" secondItem="s4e-a5-fer" secondAttribute="bottom" constant="50" id="N1F-dW-ZUH">
@@ -471,6 +470,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="IZb-9G-bxz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="T2g-cF-Fav" secondAttribute="top" constant="44" id="1jn-y0-3dw"/>
                             <constraint firstItem="3ZO-g2-zOx" firstAttribute="leading" secondItem="T2g-cF-Fav" secondAttribute="leading" id="3H3-qb-dE8"/>
                             <constraint firstItem="IZb-9G-bxz" firstAttribute="leading" secondItem="T2g-cF-Fav" secondAttribute="leading" id="DdC-Fx-f2L"/>
                             <constraint firstAttribute="bottom" secondItem="IZb-9G-bxz" secondAttribute="bottom" id="Ltq-Bk-U7U"/>
@@ -522,10 +522,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Yt-gE-ds5">
-                                <rect key="frame" x="0.0" y="266" width="375" height="401"/>
+                                <rect key="frame" x="0.0" y="286" width="375" height="381"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号登录有助于您快速找到好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSz-O0-nvX">
-                                        <rect key="frame" x="72.5" y="20" width="230" height="18"/>
+                                        <rect key="frame" x="72.5" y="0.0" width="230" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -534,7 +534,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pw1-Rz-8iZ">
-                                        <rect key="frame" x="40" y="68" width="295" height="50"/>
+                                        <rect key="frame" x="40" y="48" width="295" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1d-Yq-1lO">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
@@ -614,7 +614,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Yh-TI-cWb">
-                                        <rect key="frame" x="40" y="122" width="295" height="50"/>
+                                        <rect key="frame" x="40" y="102" width="295" height="50"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入账号密码" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ZgJ-X1-ozS">
                                                 <rect key="frame" x="15" y="0.0" width="270" height="50"/>
@@ -661,14 +661,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02y-kF-xQO">
-                                        <rect key="frame" x="132" y="187" width="111" height="29"/>
+                                        <rect key="frame" x="132" y="167" width="111" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="ycb-IQ-cny"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="忘记了? 找回密码">
                                             <color key="titleColor" red="0.90196078430000004" green="0.74509803919999995" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Nx-H1-YZ3">
-                                        <rect key="frame" x="0.0" y="266" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="246" width="375" height="80"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-BE-Y4H">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
@@ -753,7 +756,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-mz-U0x">
-                                        <rect key="frame" x="141" y="357" width="93" height="29"/>
+                                        <rect key="frame" x="141" y="337" width="93" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="qei-9Q-EY1"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="登录遇到问题?">
                                             <color key="titleColor" red="0.90588235289999997" green="0.74509803919999995" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -785,18 +791,14 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstItem="GSz-O0-nvX" firstAttribute="top" secondItem="5Yt-gE-ds5" secondAttribute="top" constant="20" id="py8-P6-q4z">
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </constraint>
+                                    <constraint firstItem="GSz-O0-nvX" firstAttribute="top" secondItem="5Yt-gE-ds5" secondAttribute="top" id="py8-P6-q4z"/>
                                     <constraint firstItem="5Yh-TI-cWb" firstAttribute="leading" secondItem="Pw1-Rz-8iZ" secondAttribute="leading" id="qKr-DJ-XXb"/>
                                     <constraint firstItem="5Yh-TI-cWb" firstAttribute="top" secondItem="Pw1-Rz-8iZ" secondAttribute="bottom" constant="4" id="r7D-9z-GqQ">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstItem="8Nx-H1-YZ3" firstAttribute="top" secondItem="02y-kF-xQO" secondAttribute="bottom" constant="50" id="xHW-Jg-Hbf">
+                                    <constraint firstItem="8Nx-H1-YZ3" firstAttribute="top" secondItem="02y-kF-xQO" secondAttribute="bottom" priority="999" constant="50" id="xHW-Jg-Hbf">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoConstant" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -839,6 +841,7 @@
                             <constraint firstItem="PRO-un-Aha" firstAttribute="top" secondItem="o1A-9q-zBd" secondAttribute="top" id="PqS-ih-hJF"/>
                             <constraint firstItem="5Yt-gE-ds5" firstAttribute="leading" secondItem="PRO-un-Aha" secondAttribute="leading" id="iye-pb-Yin"/>
                             <constraint firstItem="PRO-un-Aha" firstAttribute="trailing" secondItem="5Yt-gE-ds5" secondAttribute="trailing" id="qQG-j4-HWM"/>
+                            <constraint firstItem="5Yt-gE-ds5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PRO-un-Aha" secondAttribute="top" constant="44" id="vCy-gP-ge9"/>
                             <constraint firstAttribute="bottom" secondItem="5Yt-gE-ds5" secondAttribute="bottom" id="vT3-aW-nX9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PRO-un-Aha"/>
