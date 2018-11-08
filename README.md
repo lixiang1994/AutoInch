@@ -126,8 +126,9 @@ print("this is " +
 
 ## Screenshot
 
-![TikTok 1](https://github.com/lixiang1994/AutoInch/blob/master/Resources/Storyboard%20TikTok%20Demo1.jpg)
-![TikTok 2](https://github.com/lixiang1994/AutoInch/blob/master/Resources/Storyboard%20TikTok%20Demo2.jpg)
+![TikTok 1](Resources/Storyboard%20TikTok%20Demo1.jpg)
+
+![TikTok 2](Resources/Storyboard%20TikTok%20Demo2.jpg)
 
 ## Contributing
 
