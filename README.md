@@ -3,13 +3,6 @@
 ![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg)
 
 
-### 相关说明完善中
-### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)
-### [相关文章 Auto](https://www.jianshu.com/p/e0e12206e0c7)
-### [相关文章 Auto](https://www.jianshu.com/p/48c67d0c95b6)
-
-
-
 ## Features
 
 - [x] Numerical type fast conversion
@@ -139,3 +132,8 @@ If you extended the functionality of AutoInch yourself and want others to use it
 ## License
 
 AutoInch is under GPL license. See the [LICENSE](LICENSE) file for more info.
+
+
+>### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)
+>### [相关文章 Auto](https://www.jianshu.com/p/e0e12206e0c7)
+>### [相关文章 Auto](https://www.jianshu.com/p/48c67d0c95b6)
