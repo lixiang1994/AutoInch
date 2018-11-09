@@ -87,6 +87,11 @@ private lazy var stateLabel = UILabel().then {
 }
 ```
 
+Storyboard / Xib:
+
+![约束](Resources/Storyboard%20Constraint.png)
+![UILabel 字体大小](Resources/Storyboard%20Label%20Font.png)
+
 ### Inch
 
 例子
