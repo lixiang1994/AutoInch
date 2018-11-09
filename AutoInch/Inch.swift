@@ -17,9 +17,9 @@ import Foundation
 
 import UIKit
 
-typealias InchNumber = CGFloat
-
-enum Inch { }
+public enum Inch {
+    typealias Number = CGFloat
+}
 
 extension Inch {
     
@@ -33,7 +33,7 @@ extension Inch {
         case i61Full
         case i65Full
         
-        var width: InchNumber {
+        var width: Number {
             switch self {
             case .unknown:  return 0
             case .i35:      return 320
@@ -46,7 +46,7 @@ extension Inch {
             }
         }
         
-        var height: InchNumber {
+        var height: Number {
             switch self {
             case .unknown:  return 0
             case .i35:      return 480
@@ -98,26 +98,14 @@ extension Inch {
 }
 
 extension Inch.Phone: Equatable {
-    static func == (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
+    public static func == (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }
 
 extension Inch.Phone: Comparable {
-    static func < (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
+    public static func < (lhs: Inch.Phone, rhs: Inch.Phone) -> Bool {
         return lhs.rawValue < rhs.rawValue
-    }
-}
-
-extension Inch.Phone: Strideable {
-    typealias Stride = Int
-    
-    func distance(to other: Inch.Phone) -> Int {
-        return 1
-    }
-    
-    func advanced(by n: Int) -> Inch.Phone {
-        return Inch.Phone(rawValue: n) ?? .unknown
     }
 }
 
@@ -186,7 +174,7 @@ extension Inchable {
     private func matching(type: Inch.Phone, _ value: Self) -> Self {
         return Inch.Phone.current == type ? value : self
     }
-    private func matching(width: InchNumber, _ value: Self) -> Self {
+    private func matching(width: Inch.Number, _ value: Self) -> Self {
         return Inch.Phone.current.width == width ? value : self
     }
     
