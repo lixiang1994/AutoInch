@@ -17,7 +17,7 @@ import Foundation
 
 import UIKit
 
-protocol AutoCalculationable {
+public protocol AutoCalculationable {
     
     /// 自动计算
     ///
@@ -35,7 +35,7 @@ protocol AutoCalculationable {
 
 extension AutoCalculationable where Self == Double {
     
-    func auto() -> Double {
+    public func auto() -> Double {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return self
         }
@@ -52,15 +52,15 @@ extension Double: AutoCalculationable { }
 
 extension BinaryInteger {
     
-    func auto() -> Double {
+    public func auto() -> Double {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    func auto<T: BinaryInteger>() -> T {
+    public func auto<T: BinaryInteger>() -> T {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    func auto<T: BinaryFloatingPoint>() -> T {
+    public func auto<T: BinaryFloatingPoint>() -> T {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
@@ -68,26 +68,26 @@ extension BinaryInteger {
 
 extension BinaryFloatingPoint {
     
-    func auto() -> Double {
+    public func auto() -> Double {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    func auto<T: BinaryInteger>() -> T {
+    public func auto<T: BinaryInteger>() -> T {
         let temp = Double("\(self)") ?? 0
         return T(temp.auto())
     }
-    func auto<T: BinaryFloatingPoint>() -> T {
+    public func auto<T: BinaryFloatingPoint>() -> T {
         let temp = Double("\(self)") ?? 0
         return T(temp.auto())
     }
 }
 
-protocol AutoAdapterable {
+public protocol AutoAdapterable {
     func adapt(origin value: CGFloat) -> CGFloat
 }
 
 extension AutoAdapterable {
-    func adapt(origin value: CGFloat) -> CGFloat {
+    public func adapt(origin value: CGFloat) -> CGFloat {
         return value.auto()
     }
 }

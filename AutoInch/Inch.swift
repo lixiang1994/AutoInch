@@ -17,17 +17,6 @@ import Foundation
 
 import UIKit
 
-postfix operator <~
-postfix operator >~
-postfix func <~ (l: Inch.Phone) -> [Inch.Phone] {
-    guard l.rawValue >= 0 else { return [] }
-    return Array(Inch.Phone.allCases[l.rawValue ..< Inch.Phone.allCases.count])
-}
-postfix func >~ (l: Inch.Phone) -> [Inch.Phone] {
-    guard l.rawValue < Inch.Phone.allCases.count else { return Inch.Phone.allCases }
-    return Array(Inch.Phone.allCases[0 ... l.rawValue])
-}
-
 typealias InchNumber = CGFloat
 
 enum Inch { }
@@ -142,7 +131,7 @@ extension CGFloat: Inchable {}
 extension CGPoint: Inchable {}
 extension UIEdgeInsets: Inchable {}
 
-protocol Inchable {
+public protocol Inchable {
     
     func i35(_ value: Self) -> Self
     func i40(_ value: Self) -> Self
@@ -159,38 +148,38 @@ protocol Inchable {
 
 extension Inchable {
     
-    func i35(_ value: Self) -> Self {
+    public func i35(_ value: Self) -> Self {
         return matching(type: .i35, value)
     }
-    func i40(_ value: Self) -> Self {
+    public func i40(_ value: Self) -> Self {
         return matching(type: .i40, value)
     }
-    func i47(_ value: Self) -> Self {
+    public func i47(_ value: Self) -> Self {
         return matching(type: .i47, value)
     }
-    func i55(_ value: Self) -> Self {
+    public func i55(_ value: Self) -> Self {
         return matching(type: .i55, value)
     }
-    func i58full(_ value: Self) -> Self {
+    public func i58full(_ value: Self) -> Self {
         return matching(type: .i58Full, value)
     }
-    func i61full(_ value: Self) -> Self {
+    public func i61full(_ value: Self) -> Self {
         return matching(type: .i61Full, value)
     }
-    func i65full(_ value: Self) -> Self {
+    public func i65full(_ value: Self) -> Self {
         return matching(type: .i65Full, value)
     }
-    func ifull(_ value: Self) -> Self {
+    public func ifull(_ value: Self) -> Self {
         return matching([.i58Full, .i61Full, .i65Full], value)
     }
     
-    func w320(_ value: Self) -> Self {
+    public func w320(_ value: Self) -> Self {
         return matching(width: 320, value)
     }
-    func w375(_ value: Self) -> Self {
+    public func w375(_ value: Self) -> Self {
         return matching(width: 375, value)
     }
-    func w414(_ value: Self) -> Self {
+    public func w414(_ value: Self) -> Self {
         return matching(width: 414, value)
     }
     
