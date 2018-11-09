@@ -17,7 +17,28 @@ import Foundation
 
 import UIKit
 
-public protocol AutoCalculationable {
+public enum Auto {
+    
+    /// 转换 用于数值的等比例计算 如需自定义可重新赋值
+    public static var conversion: ((Double) -> Double) = { (origin) in
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return origin
+        }
+        
+        let base = 375.0 
+        let screenWidth = Double(UIScreen.main.bounds.width)
+        let screenHeight = Double(UIScreen.main.bounds.height)
+        let width = min(screenWidth, screenHeight)
+        return origin * (width / base)
+    }
+    
+    /// 适配 用于可视化等比例计算 如需自定义可重新赋值
+    public static var adaptation: ((CGFloat) -> CGFloat) = { (origin) in
+        return origin.auto()
+    }
+}
+
+fileprivate protocol AutoCalculationable {
     
     /// 自动计算
     ///
@@ -25,30 +46,12 @@ public protocol AutoCalculationable {
     func auto() -> Double
 }
 
-//extension Double {
-//    /// 扩展Double类 重写auto()实现
-//    func auto() -> Double {
-//        // ... 自定义计算处理
-//        return self
-//    }
-//}
-
-extension AutoCalculationable where Self == Double {
+extension Double: AutoCalculationable {
     
-    public func auto() -> Double {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return self
-        }
-        
-        let base = 375.0
-        let screenWidth = Double(UIScreen.main.bounds.width)
-        let screenHeight = Double(UIScreen.main.bounds.height)
-        let width = min(screenWidth, screenHeight)
-        return self * (width / base)
+    func auto() -> Double {
+        return Auto.conversion(self)
     }
 }
-
-extension Double: AutoCalculationable { }
 
 extension BinaryInteger {
     
@@ -56,11 +59,11 @@ extension BinaryInteger {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    public func auto<T: BinaryInteger>() -> T {
+    public func auto<T>() -> T where T : BinaryInteger {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    public func auto<T: BinaryFloatingPoint>() -> T {
+    public func auto<T>() -> T where T : BinaryFloatingPoint {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
@@ -72,31 +75,16 @@ extension BinaryFloatingPoint {
         let temp = Double("\(self)") ?? 0
         return temp.auto()
     }
-    public func auto<T: BinaryInteger>() -> T {
+    public func auto<T>() -> T where T : BinaryInteger {
         let temp = Double("\(self)") ?? 0
         return T(temp.auto())
     }
-    public func auto<T: BinaryFloatingPoint>() -> T {
+    public func auto<T>() -> T where T : BinaryFloatingPoint {
         let temp = Double("\(self)") ?? 0
         return T(temp.auto())
     }
 }
 
-public protocol AutoAdapterable {
-    func adapt(origin value: CGFloat) -> CGFloat
-}
-
-extension AutoAdapterable {
-    public func adapt(origin value: CGFloat) -> CGFloat {
-        return value.auto()
-    }
-}
-
-extension UILabel: AutoAdapterable { }
-extension UIButton: AutoAdapterable { }
-extension UITextView: AutoAdapterable { }
-extension UITextField: AutoAdapterable { }
-extension NSLayoutConstraint: AutoAdapterable { }
 
 extension NSLayoutConstraint {
     
@@ -105,7 +93,7 @@ extension NSLayoutConstraint {
         set {
             guard newValue else { return }
             
-            constant = adapt(origin: constant)
+            constant = Auto.adaptation(constant)
         }
     }
 }
@@ -118,7 +106,7 @@ extension UILabel {
             guard newValue else { return }
             guard let text = attributedText else { return }
             
-            attributedText = text.reset(font: { adapt(origin: $0) })
+            attributedText = text.reset(font: { Auto.adaptation($0) })
         }
     }
     
@@ -128,7 +116,7 @@ extension UILabel {
             guard newValue else { return }
             guard let text = attributedText else { return }
             
-            attributedText = text.reset(line: { adapt(origin: $0) })
+            attributedText = text.reset(line: { Auto.adaptation($0) })
         }
     }
 }
@@ -141,7 +129,7 @@ extension UITextView {
             guard newValue else { return }
             guard let size = font?.pointSize else { return }
             
-            font = font?.withSize(adapt(origin: size))
+            font = font?.withSize(Auto.adaptation(size))
         }
     }
 }
@@ -154,7 +142,7 @@ extension UITextField {
             guard newValue else { return }
             guard let size = font?.pointSize else { return }
             
-            font = font?.withSize(adapt(origin: size))
+            font = font?.withSize(Auto.adaptation(size))
         }
     }
 }
@@ -175,12 +163,12 @@ extension UIButton {
             
             if let _ = title(for: state), let label = titleLabel {
                 let size = label.font.pointSize
-                label.font = label.font.withSize(adapt(origin: size))
+                label.font = label.font.withSize(Auto.adaptation(size))
             }
             
             for state in states {
                 if let text = attributedTitle(for: state) {
-                    let title = text.reset(font: { adapt(origin: $0) })
+                    let title = text.reset(font: { Auto.adaptation($0) })
                     setAttributedTitle(title, for: state)
                 }
             }
@@ -201,12 +189,12 @@ extension UIButton {
             
             for state in states {
                 if let image = image(for: state) {
-                    let width = adapt(origin: image.size.width)
+                    let width = Auto.adaptation(image.size.width)
                     let new = image.scaled(to: width)
                     setImage(new, for: state)
                 }
                 if let image = backgroundImage(for: state) {
-                    let width = adapt(origin: image.size.width)
+                    let width = Auto.adaptation(image.size.width)
                     let new = image.scaled(to: width)
                     setBackgroundImage(new, for: state)
                 }
@@ -220,10 +208,10 @@ extension UIButton {
             guard newValue else { return }
             
             titleEdgeInsets = UIEdgeInsets(
-                top: adapt(origin: titleEdgeInsets.top),
-                left: adapt(origin: titleEdgeInsets.left),
-                bottom: adapt(origin: titleEdgeInsets.bottom),
-                right: adapt(origin: titleEdgeInsets.right)
+                top: Auto.adaptation(titleEdgeInsets.top),
+                left: Auto.adaptation(titleEdgeInsets.left),
+                bottom: Auto.adaptation(titleEdgeInsets.bottom),
+                right: Auto.adaptation(titleEdgeInsets.right)
             )
         }
     }
@@ -234,10 +222,10 @@ extension UIButton {
             guard newValue else { return }
             
             imageEdgeInsets = UIEdgeInsets(
-                top: adapt(origin: imageEdgeInsets.top),
-                left: adapt(origin: imageEdgeInsets.left),
-                bottom: adapt(origin: imageEdgeInsets.bottom),
-                right: adapt(origin: imageEdgeInsets.right)
+                top: Auto.adaptation(imageEdgeInsets.top),
+                left: Auto.adaptation(imageEdgeInsets.left),
+                bottom: Auto.adaptation(imageEdgeInsets.bottom),
+                right: Auto.adaptation(imageEdgeInsets.right)
             )
         }
     }
@@ -248,10 +236,10 @@ extension UIButton {
             guard newValue else { return }
             
             contentEdgeInsets = UIEdgeInsets(
-                top: adapt(origin: contentEdgeInsets.top),
-                left: adapt(origin: contentEdgeInsets.left),
-                bottom: adapt(origin: contentEdgeInsets.bottom),
-                right: adapt(origin: contentEdgeInsets.right)
+                top: Auto.adaptation(contentEdgeInsets.top),
+                left: Auto.adaptation(contentEdgeInsets.left),
+                bottom: Auto.adaptation(contentEdgeInsets.bottom),
+                right: Auto.adaptation(contentEdgeInsets.right)
             )
         }
     }

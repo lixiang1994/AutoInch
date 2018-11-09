@@ -23,7 +23,7 @@ enum Inch { }
 
 extension Inch {
     
-    enum Phone: Int, CaseIterable {
+    public enum Phone: Int, CaseIterable {
         case unknown = -1
         case i35
         case i40
@@ -59,7 +59,7 @@ extension Inch {
             }
         }
         
-        private var scale: CGFloat {
+        var scale: CGFloat {
             switch self {
             case .unknown:  return 0
             case .i35:      return 2
@@ -75,7 +75,7 @@ extension Inch {
         private var size: CGSize { return CGSize(width: width, height: height) }
         private var native: CGSize { return CGSize(width: width * scale, height: height * scale) }
         
-        static func type(size: CGSize = UIScreen.main.bounds.size,
+        public static func type(size: CGSize = UIScreen.main.bounds.size,
                          scale: CGFloat = UIScreen.main.scale) -> Phone {
             let width = min(size.width, size.height) * scale
             let height = max(size.width, size.height) * scale
@@ -93,7 +93,7 @@ extension Inch {
             }
         }
         
-        static let current: Phone = type()
+        public static let current: Phone = type()
     }
 }
 
