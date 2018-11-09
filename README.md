@@ -90,6 +90,11 @@ private lazy var stateLabel = UILabel().then {
 }
 ```
 
+Storyboard / Xib:
+
+![Constraint](Resources/Storyboard%20Constraint.png)
+
+
 ### Inch
 
 e.g.
