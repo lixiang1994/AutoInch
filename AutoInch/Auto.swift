@@ -127,9 +127,12 @@ extension UITextView {
         get { return false }
         set {
             guard newValue else { return }
-            guard let size = font?.pointSize else { return }
+            guard let font = font else { return }
             
-            font = font?.withSize(Auto.adaptation(size))
+            self.font = UIFont(
+                descriptor: font.fontDescriptor,
+                size: Auto.adaptation(font.pointSize)
+            )
         }
     }
 }
@@ -140,9 +143,12 @@ extension UITextField {
         get { return false }
         set {
             guard newValue else { return }
-            guard let size = font?.pointSize else { return }
+            guard let font = font else { return }
             
-            font = font?.withSize(Auto.adaptation(size))
+            self.font = UIFont(
+                descriptor: font.fontDescriptor,
+                size: Auto.adaptation(font.pointSize)
+            )
         }
     }
 }
@@ -161,9 +167,14 @@ extension UIButton {
                 .disabled
             ]
             
-            if let _ = title(for: state), let label = titleLabel {
-                let size = label.font.pointSize
-                label.font = label.font.withSize(Auto.adaptation(size))
+            if
+                let _ = title(for: state),
+                let label = titleLabel,
+                let font = label.font {
+                label.font = UIFont(
+                    descriptor: font.fontDescriptor,
+                    size: Auto.adaptation(font.pointSize)
+                )
             }
             
             for state in states {
@@ -255,7 +266,10 @@ fileprivate extension NSAttributedString {
         ) { (attributes, range, stop) in
             var temp = attributes
             if let font = attributes[.font] as? UIFont {
-                temp[.font] = font.withSize(size(font.pointSize))
+                temp[.font] = UIFont(
+                    descriptor: font.fontDescriptor,
+                    size: size(font.pointSize)
+                )
             }
             string.setAttributes(temp, range: range)
         }
