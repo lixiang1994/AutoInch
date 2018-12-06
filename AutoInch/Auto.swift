@@ -104,8 +104,14 @@ extension UILabel {
         get { return false }
         set {
             guard newValue else { return }
-            guard let text = attributedText else { return }
+            guard let text = attributedText?.mutableCopy() as? NSMutableAttributedString else {
+                return
+            }
             
+            font = UIFont(
+                name: font.fontName,
+                size: Auto.adaptation(font.pointSize)
+            )
             attributedText = text.reset(font: { Auto.adaptation($0) })
         }
     }
@@ -130,7 +136,7 @@ extension UITextView {
             guard let font = font else { return }
             
             self.font = UIFont(
-                descriptor: font.fontDescriptor,
+                name: font.fontName,
                 size: Auto.adaptation(font.pointSize)
             )
         }
@@ -146,7 +152,7 @@ extension UITextField {
             guard let font = font else { return }
             
             self.font = UIFont(
-                descriptor: font.fontDescriptor,
+                name: font.fontName,
                 size: Auto.adaptation(font.pointSize)
             )
         }
@@ -172,7 +178,7 @@ extension UIButton {
                 let label = titleLabel,
                 let font = label.font {
                 label.font = UIFont(
-                    descriptor: font.fontDescriptor,
+                    name: font.fontName,
                     size: Auto.adaptation(font.pointSize)
                 )
             }
@@ -267,7 +273,7 @@ fileprivate extension NSAttributedString {
             var temp = attributes
             if let font = attributes[.font] as? UIFont {
                 temp[.font] = UIFont(
-                    descriptor: font.fontDescriptor,
+                    name: font.fontName,
                     size: size(font.pointSize)
                 )
             }
