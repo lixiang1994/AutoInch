@@ -26,8 +26,11 @@ extension UIViewController {
     
     @IBAction func backAction() {
         view.endEditing(false)
-        if let nc = navigationController, nc.viewControllers.first != self {
-            nc.popViewController(animated: true)
+        if
+            let navigation = navigationController,
+            navigation.viewControllers.first != self {
+            navigation.popViewController(animated: true)
+            
         } else {
             let presenting = presentingViewController ?? self
             presenting.dismiss(animated: true)
