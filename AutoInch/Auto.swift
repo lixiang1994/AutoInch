@@ -262,6 +262,19 @@ extension UIButton {
     }
 }
 
+@available(iOS 9.0, *)
+extension UIStackView {
+    
+    @IBInspectable private var autoSpacing: Bool {
+        get { return false }
+        set {
+            guard newValue else { return }
+            
+            spacing = Auto.adaptation(spacing)
+        }
+    }
+}
+
 fileprivate extension NSAttributedString {
     
     func reset(font size: (CGFloat) -> CGFloat) -> NSAttributedString {
