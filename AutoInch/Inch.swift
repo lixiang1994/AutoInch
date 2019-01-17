@@ -110,6 +110,7 @@ extension Inch.Phone: Comparable {
 }
 
 extension Int: Inchable {}
+extension Bool: Inchable {}
 extension Float: Inchable {}
 extension Double: Inchable {}
 extension String: Inchable {}
