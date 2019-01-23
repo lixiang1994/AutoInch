@@ -183,11 +183,16 @@ extension UIButton {
                 )
             }
             
-            for state in states {
-                if let text = attributedTitle(for: state) {
-                    let title = text.reset(font: { Auto.adaptation($0) })
-                    setAttributedTitle(title, for: state)
-                }
+            let titles = states.enumerated().compactMap {
+                (i, state) -> (Int, NSAttributedString)? in
+                guard let t = attributedTitle(for: state) else { return nil }
+                return (i, t)
+            }
+            titles.filter(duplication: { $0.1 }).forEach {
+                setAttributedTitle(
+                    $1.reset(font: { Auto.adaptation($0) }),
+                    for: states[$0]
+                )
             }
         }
     }
@@ -204,17 +209,28 @@ extension UIButton {
                 .disabled
             ]
             
-            for state in states {
-                if let image = image(for: state) {
-                    let width = Auto.adaptation(image.size.width)
-                    let new = image.scaled(to: width)
-                    setImage(new, for: state)
-                }
-                if let image = backgroundImage(for: state) {
-                    let width = Auto.adaptation(image.size.width)
-                    let new = image.scaled(to: width)
-                    setBackgroundImage(new, for: state)
-                }
+            let images = states.enumerated().compactMap {
+                (i, state) -> (Int, UIImage)? in
+                guard let v = image(for: state) else { return nil }
+                return (i, v)
+            }
+            images.filter(duplication: { $0.1 }).forEach {
+                setImage(
+                    $1.scaled(to: Auto.adaptation($1.size.width)),
+                    for: states[$0]
+                )
+            }
+            
+            let backgrounds = states.enumerated().compactMap {
+                (i, state) -> (Int, UIImage)? in
+                guard let v = backgroundImage(for: state) else { return nil }
+                return (i, v)
+            }
+            backgrounds.filter(duplication: { $0.1 }).forEach {
+                setBackgroundImage(
+                    $1.scaled(to: Auto.adaptation($1.size.width)),
+                    for: states[$0]
+                )
             }
         }
     }
@@ -326,6 +342,20 @@ fileprivate extension UIImage {
         let new = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return new
+    }
+}
+
+fileprivate extension Array {
+    
+    func filter<E: Equatable>(duplication: (Element) throws -> E) rethrows -> [Element] {
+        var temp: [Element] = []
+        try forEach {
+            let ident = try duplication($0)
+            if try !temp.map({ try duplication($0) }).contains(ident) {
+                temp.append($0)
+            }
+        }
+        return temp
     }
 }
 
