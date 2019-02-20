@@ -188,7 +188,7 @@ extension UIButton {
                 guard let t = attributedTitle(for: state) else { return nil }
                 return (i, t)
             }
-            titles.filter(duplication: { $0.1 }).forEach {
+            titles.filtered(duplication: { $0.1 }).forEach {
                 setAttributedTitle(
                     $1.reset(font: { Auto.adaptation($0) }),
                     for: states[$0]
@@ -214,7 +214,7 @@ extension UIButton {
                 guard let v = image(for: state) else { return nil }
                 return (i, v)
             }
-            images.filter(duplication: { $0.1 }).forEach {
+            images.filtered(duplication: { $0.1 }).forEach {
                 setImage(
                     $1.scaled(to: Auto.adaptation($1.size.width)),
                     for: states[$0]
@@ -226,7 +226,7 @@ extension UIButton {
                 guard let v = backgroundImage(for: state) else { return nil }
                 return (i, v)
             }
-            backgrounds.filter(duplication: { $0.1 }).forEach {
+            backgrounds.filtered(duplication: { $0.1 }).forEach {
                 setBackgroundImage(
                     $1.scaled(to: Auto.adaptation($1.size.width)),
                     for: states[$0]
@@ -347,15 +347,12 @@ fileprivate extension UIImage {
 
 fileprivate extension Array {
     
-    func filter<E: Equatable>(duplication: (Element) throws -> E) rethrows -> [Element] {
-        var temp: [Element] = []
-        try forEach {
-            let ident = try duplication($0)
-            if try !temp.map({ try duplication($0) }).contains(ident) {
-                temp.append($0)
+    func filtered<E: Equatable>(duplication closure: (Element) throws -> E) rethrows -> [Element] {
+        return try reduce(into: [Element]()) {
+            if try !$0.compactMap({ try closure($0) }).contains(try closure($1)) {
+                $0.append($1)
             }
         }
-        return temp
     }
 }
 
