@@ -159,6 +159,23 @@ extension UITextField {
     }
 }
 
+extension UIImageView {
+    
+    @IBInspectable private var autoImage: Bool {
+        get { return false }
+        set {
+            guard newValue else { return }
+            
+            if let width = image?.size.width {
+                image = image?.scaled(to: Auto.adaptation(width))
+            }
+            if let width = highlightedImage?.size.width {
+                highlightedImage = highlightedImage?.scaled(to: Auto.adaptation(width))
+            }
+        }
+    }
+}
+
 extension UIButton {
     
     @IBInspectable private var autoTitle: Bool {
