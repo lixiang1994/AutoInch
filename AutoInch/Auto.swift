@@ -98,6 +98,18 @@ extension NSLayoutConstraint {
     }
 }
 
+extension UIView {
+    
+    @IBInspectable private var autoCornerRadius: CGFloat {
+        get { return layer.cornerRadius }
+        set {
+            let value = Auto.adaptation(newValue)
+            layer.masksToBounds = true
+            layer.cornerRadius = abs(CGFloat(Int(value * 100)) / 100)
+        }
+    }
+}
+
 extension UILabel {
     
     @IBInspectable private var autoFont: Bool {
