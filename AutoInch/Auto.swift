@@ -29,7 +29,7 @@ public enum Auto {
         let screenWidth = Double(UIScreen.main.bounds.width)
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
-        return origin * (width / base)
+        return (origin * (width / base)).rounded(places: 3)
     }
     
     /// 适配 用于可视化等比例计算 如需自定义可重新赋值
@@ -382,6 +382,14 @@ fileprivate extension Array {
                 $0.append($1)
             }
         }
+    }
+}
+
+fileprivate extension Double {
+    
+    func rounded(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }
 
