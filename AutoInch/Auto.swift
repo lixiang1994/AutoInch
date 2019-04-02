@@ -377,10 +377,9 @@ fileprivate extension UIImage {
 fileprivate extension Array {
     
     func filtered<E: Equatable>(duplication closure: (Element) throws -> E) rethrows -> [Element] {
-        return try reduce(into: [Element]()) {
-            if try !$0.compactMap({ try closure($0) }).contains(try closure($1)) {
-                $0.append($1)
-            }
+        return try reduce(into: [Element]()) { (result, e) in
+            let contains = try result.contains { try closure($0) == closure(e) }
+            result += contains ? [] : [e]
         }
     }
 }
