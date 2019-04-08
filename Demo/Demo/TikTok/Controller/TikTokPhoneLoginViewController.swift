@@ -1,6 +1,6 @@
 //
-//  TikTokPasswordLoginViewController.swift
-//  AutoInchDemo
+//  TikTokPhoneLoginViewController.swift
+//  Demo
 //
 //  Created by 李响 on 2018/11/5.
 //  Copyright © 2018 swift. All rights reserved.
@@ -8,50 +8,44 @@
 
 import UIKit
 
-class TikTokPasswordLoginViewController: UIViewController {
+class TikTokPhoneLoginViewController: UIViewController {
 
-    var phone = ""
-    
     private lazy var layer = CAGradientLayer().then {
         let colors: [CGColor] =  [#colorLiteral(red: 0.4727493525, green: 0.4444301128, blue: 0.9979013801, alpha: 1), #colorLiteral(red: 0.5695798397, green: 0.2927905917, blue: 0.9881889224, alpha: 1), #colorLiteral(red: 0.6905713677, green: 0.1041976586, blue: 0.9767265916, alpha: 1), #colorLiteral(red: 0.7510715127, green: 0.002722046804, blue: 0.9681376815, alpha: 1)]
         $0.locations = [0.0, 0.4, 0.8, 1.0]
         $0.colors = colors
-        $0.opacity = 1.0
+        $0.opacity = 0.9
     }
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var areaButton: UIButton!
+    @IBOutlet weak var captchaButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var otherView: UIView!
     
+    private var phone = ""
     private var isLogging = false
-    private var isDidAppear = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
         setupNotification()
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
         
-        isDidAppear = false
+        phoneTextField.becomeFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        isDidAppear = true
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        
         if phone.count < 13 {
             phoneTextField.becomeFirstResponder()
         } else {
-            passwordTextField.becomeFirstResponder()
+            codeTextField.becomeFirstResponder()
         }
     }
     
@@ -61,6 +55,19 @@ class TikTokPasswordLoginViewController: UIViewController {
         layer.frame = view.bounds
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "password":
+            guard let controller = segue.destination as? TikTokPasswordLoginViewController else {
+                return
+            }
+            
+            controller.phone = phone
+            
+        default: break
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard !isLogging else {
@@ -68,6 +75,7 @@ class TikTokPasswordLoginViewController: UIViewController {
         }
         
         view.endEditing(true)
+        dismiss(animated: true)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -90,10 +98,14 @@ class TikTokPasswordLoginViewController: UIViewController {
         
     }
     
+    @IBAction func captchaAction(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func doneAction(_ sender: UIButton) {
         guard
             let phone = phoneTextField.text,
-            let password = passwordTextField.text else {
+            let code = codeTextField.text else {
             return
         }
         guard sender.alpha == 1 else {
@@ -114,7 +126,7 @@ class TikTokPasswordLoginViewController: UIViewController {
         animation.isRemovedOnCompletion = false
         sender.layer.add(animation, forKey: "loading")
         
-        logging(phone.trimmingCharacters(in: .whitespaces), password) {
+        logging(phone.trimmingCharacters(in: .whitespaces), code) {
             [weak self] (result) in
             guard let self = self else { return }
             
@@ -140,7 +152,7 @@ class TikTokPasswordLoginViewController: UIViewController {
             }
             if text.count >= 13 {
                 sender.text = String(text.prefix(13))
-                passwordTextField.becomeFirstResponder()
+                codeTextField.becomeFirstResponder()
             }
             
             phone = text
@@ -153,10 +165,17 @@ class TikTokPasswordLoginViewController: UIViewController {
             phone = text
         }
         
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.25)
+        captchaButton.isEnabled = !text.isEmpty
+        loginView.alpha = text.isEmpty ? 0 : 1
+        otherView.alpha = text.isEmpty ? 1 : 0
+        UIView.commitAnimations()
+        
         checkDoneStatus()
     }
     
-    @IBAction func passwordChangeAction(_ sender: UITextField) {
+    @IBAction func codeChangeAction(_ sender: UITextField) {
         guard let text = sender.text else {
             return
         }
@@ -169,21 +188,13 @@ class TikTokPasswordLoginViewController: UIViewController {
     }
 }
 
-extension TikTokPasswordLoginViewController {
+extension TikTokPhoneLoginViewController {
     
     private func setup() {
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
         view.layer.insertSublayer(layer, at: 0)
         view.layoutIfNeeded()
         
-        phoneTextField.text = phone
-        
         if let button = phoneTextField.value(forKey: "_clearButton") as? UIButton {
-            button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
-            button.adjustsImageWhenHighlighted = false
-        }
-        if let button = passwordTextField.value(forKey: "_clearButton") as? UIButton {
             button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
             button.adjustsImageWhenHighlighted = false
         }
@@ -201,11 +212,11 @@ extension TikTokPasswordLoginViewController {
     private func checkDoneStatus() {
         guard
             let phone = phoneTextField.text,
-            let password = passwordTextField.text else {
+            let code = codeTextField.text else {
             return
         }
         
-        let ok = phone.count == 13 && !password.isEmpty
+        let ok = phone.count == 13 && code.count == 6
         UIView.beginAnimations("", context: nil)
         UIView.setAnimationDuration(0.25)
         doneButton.alpha = ok ? 1.0 : 0.5
@@ -213,10 +224,10 @@ extension TikTokPasswordLoginViewController {
     }
 }
 
-extension TikTokPasswordLoginViewController {
+extension TikTokPhoneLoginViewController {
     
     private func logging(_ phone: String,
-                         _ password: String,
+                         _ code: String,
                          _ completion: @escaping (Bool) -> Void) {
         isLogging = true
         // 假装请求登录
@@ -229,7 +240,7 @@ extension TikTokPasswordLoginViewController {
     }
 }
 
-extension TikTokPasswordLoginViewController {
+extension TikTokPhoneLoginViewController {
     
     @objc private func keyboardWillChangeFrame(_ sender: Notification) {
         guard let info = sender.userInfo else {
@@ -243,9 +254,6 @@ extension TikTokPasswordLoginViewController {
             let curveRaw = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int,
             let curve = UIView.AnimationCurve(rawValue: curveRaw),
             let end = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-            return
-        }
-        guard isDidAppear else {
             return
         }
         

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AutoInchDemo.xcodeproj">
+      location = "self:/Users/lixiang/Documents/Github/AutoInch/Demo/Demo.xcodeproj">
    </FileRef>
 </Workspace>

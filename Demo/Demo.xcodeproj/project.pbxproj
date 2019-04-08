@@ -28,7 +28,7 @@
 		C93AA3CB225B11BD00EDAB53 /* Inch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inch.swift; sourceTree = "<group>"; };
 		C93AA3CC225B11BD00EDAB53 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93AA3CD225B11BD00EDAB53 /* AutoInch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInch.h; sourceTree = "<group>"; };
-		C9E8AECD218DADD600332D5C /* AutoInchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoInchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9E8AECD218DADD600332D5C /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E8AED0218DADD600332D5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9E8AED2218DADD600332D5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C9E8AED5218DADD600332D5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		C9E8AEC4218DADD600332D5C = {
 			isa = PBXGroup;
 			children = (
-				C9E8AECF218DADD600332D5C /* AutoInchDemo */,
+				C9E8AECF218DADD600332D5C /* Demo */,
 				C9E8AECE218DADD600332D5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,12 +76,12 @@
 		C9E8AECE218DADD600332D5C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9E8AECD218DADD600332D5C /* AutoInchDemo.app */,
+				C9E8AECD218DADD600332D5C /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C9E8AECF218DADD600332D5C /* AutoInchDemo */ = {
+		C9E8AECF218DADD600332D5C /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				C93AA3C9225B11BD00EDAB53 /* Sources */,
@@ -95,7 +95,7 @@
 				C9E8AED9218DADD800332D5C /* LaunchScreen.storyboard */,
 				C9E8AEDC218DADD800332D5C /* Info.plist */,
 			);
-			path = AutoInchDemo;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		C9E8AEE7218FFFD800332D5C /* TikTok */ = {
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C9E8AECC218DADD600332D5C /* AutoInchDemo */ = {
+		C9E8AECC218DADD600332D5C /* Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9E8AEDF218DADD800332D5C /* Build configuration list for PBXNativeTarget "AutoInchDemo" */;
+			buildConfigurationList = C9E8AEDF218DADD800332D5C /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
 				C9E8AEC9218DADD600332D5C /* Sources */,
 				C9E8AECA218DADD600332D5C /* Frameworks */,
@@ -148,9 +148,9 @@
 			);
 			dependencies = (
 			);
-			name = AutoInchDemo;
+			name = Demo;
 			productName = AutoInchDemo;
-			productReference = C9E8AECD218DADD600332D5C /* AutoInchDemo.app */;
+			productReference = C9E8AECD218DADD600332D5C /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +169,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C9E8AEC8218DADD600332D5C /* Build configuration list for PBXProject "AutoInchDemo" */;
+			buildConfigurationList = C9E8AEC8218DADD600332D5C /* Build configuration list for PBXProject "Demo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -182,7 +182,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C9E8AECC218DADD600332D5C /* AutoInchDemo */,
+				C9E8AECC218DADD600332D5C /* Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -362,13 +362,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 683UGRW72Z;
-				INFOPLIST_FILE = AutoInchDemo/Info.plist;
+				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lee.AutoInchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lee.autoinch.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -381,13 +381,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 683UGRW72Z;
-				INFOPLIST_FILE = AutoInchDemo/Info.plist;
+				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lee.AutoInchDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lee.autoinch.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C9E8AEC8218DADD600332D5C /* Build configuration list for PBXProject "AutoInchDemo" */ = {
+		C9E8AEC8218DADD600332D5C /* Build configuration list for PBXProject "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9E8AEDD218DADD800332D5C /* Debug */,
@@ -406,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9E8AEDF218DADD800332D5C /* Build configuration list for PBXNativeTarget "AutoInchDemo" */ = {
+		C9E8AEDF218DADD800332D5C /* Build configuration list for PBXNativeTarget "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9E8AEE0218DADD800332D5C /* Debug */,

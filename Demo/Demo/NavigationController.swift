@@ -1,6 +1,6 @@
 //
 //  NavigationController.swift
-//  AutoInchDemo
+//  Demo
 //
 //  Created by 李响 on 2018/11/6.
 //  Copyright © 2018 swift. All rights reserved.

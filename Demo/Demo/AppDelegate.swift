@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  AutoInchDemo
+//  Demo
 //
 //  Created by 李响 on 2018/11/3.
 //  Copyright © 2018 swift. All rights reserved.
