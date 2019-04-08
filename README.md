@@ -16,13 +16,13 @@
 
 ## Installation
 
-**Podfile**
+**CocoaPods - Podfile**
 
 ```ruby
 pod 'AutoInch'
 ```
 
-**Carthage**
+**Carthage - Cartfile**
 
 ```ruby
 github "lixiang1994/AutoInch"
