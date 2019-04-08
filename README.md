@@ -15,12 +15,16 @@
 
 ## Installation
 
-AutoInch officially supports CocoaPods only.
-
 **Podfile**
 
 ```ruby
 pod 'AutoInch'
+```
+
+**Carthage**
+
+```ruby
+github "lixiang1994/AutoInch" ~> 1.1.1
 ```
 
 ## Usage

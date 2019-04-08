@@ -13,12 +13,16 @@
 
 ## 安装
 
-AutoInch 仅支持 CocoaPods 方式.
-
 **Podfile**
 
 ```ruby
 pod 'AutoInch'
+```
+
+**Carthage**
+
+```ruby
+github "lixiang1994/AutoInch" ~> 1.1.1
 ```
 
 ## 使用

@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C93AA3C6225B0DF600EDAB53 /* Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3C4225B0DF600EDAB53 /* Auto.swift */; };
+		C93AA3C7225B0DF600EDAB53 /* Inch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3C5225B0DF600EDAB53 /* Inch.swift */; };
 		C99FEFD0224F87BB0060106A /* AutoInch.h in Headers */ = {isa = PBXBuildFile; fileRef = C99FEFCE224F87BB0060106A /* AutoInch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C99FEFD9224F88190060106A /* Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FEFD7224F88190060106A /* Auto.swift */; };
-		C99FEFDA224F88190060106A /* Inch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FEFD8224F88190060106A /* Inch.swift */; };
-		C99FEFDB224F88310060106A /* Auto.swift in Headers */ = {isa = PBXBuildFile; fileRef = C99FEFD7224F88190060106A /* Auto.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		C99FEFDC224F88310060106A /* Inch.swift in Headers */ = {isa = PBXBuildFile; fileRef = C99FEFD8224F88190060106A /* Inch.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C93AA3C4225B0DF600EDAB53 /* Auto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto.swift; sourceTree = "<group>"; };
+		C93AA3C5225B0DF600EDAB53 /* Inch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inch.swift; sourceTree = "<group>"; };
 		C99FEFCB224F87BB0060106A /* AutoInch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99FEFCE224F87BB0060106A /* AutoInch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoInch.h; sourceTree = "<group>"; };
 		C99FEFCF224F87BB0060106A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C99FEFD7224F88190060106A /* Auto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto.swift; sourceTree = "<group>"; };
-		C99FEFD8224F88190060106A /* Inch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +34,7 @@
 		C99FEFC1224F87BB0060106A = {
 			isa = PBXGroup;
 			children = (
-				C99FEFCD224F87BB0060106A /* AutoInch */,
+				C99FEFCD224F87BB0060106A /* Sources */,
 				C99FEFCC224F87BB0060106A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,24 +47,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C99FEFCD224F87BB0060106A /* AutoInch */ = {
+		C99FEFCD224F87BB0060106A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C99FEFD6224F88190060106A /* AutoInch */,
+				C93AA3C4225B0DF600EDAB53 /* Auto.swift */,
+				C93AA3C5225B0DF600EDAB53 /* Inch.swift */,
 				C99FEFCE224F87BB0060106A /* AutoInch.h */,
 				C99FEFCF224F87BB0060106A /* Info.plist */,
 			);
-			path = AutoInch;
-			sourceTree = "<group>";
-		};
-		C99FEFD6224F88190060106A /* AutoInch */ = {
-			isa = PBXGroup;
-			children = (
-				C99FEFD7224F88190060106A /* Auto.swift */,
-				C99FEFD8224F88190060106A /* Inch.swift */,
-			);
-			name = AutoInch;
-			path = ../../../AutoInch;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,8 +66,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99FEFD0224F87BB0060106A /* AutoInch.h in Headers */,
-				C99FEFDB224F88310060106A /* Auto.swift in Headers */,
-				C99FEFDC224F88310060106A /* Inch.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +101,7 @@
 				TargetAttributes = {
 					C99FEFCA224F87BB0060106A = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -149,8 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C99FEFD9224F88190060106A /* Auto.swift in Sources */,
-				C99FEFDA224F88190060106A /* Inch.swift in Sources */,
+				C93AA3C6225B0DF600EDAB53 /* Auto.swift in Sources */,
+				C93AA3C7225B0DF600EDAB53 /* Inch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +270,7 @@
 		C99FEFD4224F87BB0060106A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -290,7 +279,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AutoInch/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,6 +291,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.autoinch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -310,6 +300,7 @@
 		C99FEFD5224F87BB0060106A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -318,7 +309,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AutoInch/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
