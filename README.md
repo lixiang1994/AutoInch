@@ -24,7 +24,7 @@ pod 'AutoInch'
 **Carthage**
 
 ```ruby
-github "lixiang1994/AutoInch" ~> 1.1.1
+github "lixiang1994/AutoInch"
 ```
 
 ## Usage
