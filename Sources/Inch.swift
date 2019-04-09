@@ -118,6 +118,9 @@ extension CGRect: Inchable {}
 extension CGSize: Inchable {}
 extension CGFloat: Inchable {}
 extension CGPoint: Inchable {}
+extension UIImage: Inchable {}
+extension UIColor: Inchable {}
+extension UIFont: Inchable {}
 extension UIEdgeInsets: Inchable {}
 
 public protocol Inchable {
