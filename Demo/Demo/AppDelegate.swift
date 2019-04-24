@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AutoInch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        /*
+        // 默认计算逻辑以375屏幕宽度为基准进行等比例计算
+        // 如果需要可以重新设置自定义的计算逻辑
+        Auto.set { (value) -> Double in
+            // .... calculation ..
+            return value
+        }
+        */
         return true
     }
 

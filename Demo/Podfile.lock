@@ -1,0 +1,16 @@
+PODS:
+  - AutoInch (1.2.0)
+
+DEPENDENCIES:
+  - AutoInch (from `../`)
+
+EXTERNAL SOURCES:
+  AutoInch:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AutoInch: 9d0343e947604bd34e8ca6367db0f61107e4052e
+
+PODFILE CHECKSUM: ecf7d3b2dbf7db87c4f919501ebdb320458e7aef
+
+COCOAPODS: 1.7.0.beta.3

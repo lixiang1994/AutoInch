@@ -19,8 +19,15 @@ import UIKit
 
 public enum Auto {
     
-    /// 转换 用于数值的等比例计算 如需自定义可重新赋值
-    public static var conversion: ((Double) -> Double) = { (origin) in
+    /// 设置转换闭包
+    ///
+    /// - Parameter conversion: 转换闭包
+    public static func set(conversion: @escaping ((Double) -> Double)) {
+        conversionClosure = conversion
+    }
+    
+    /// 转换 用于数值的等比例计算 如需自定义可重新设置
+    static var conversionClosure: ((Double) -> Double) = { (origin) in
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return origin
         }
@@ -31,19 +38,21 @@ public enum Auto {
         let width = min(screenWidth, screenHeight)
         return (origin * (width / base)).rounded(places: 3)
     }
+}
+
+extension Auto {
     
-    /// 适配 用于可视化等比例计算 如需自定义可重新赋值
-    public static var adaptation: ((CGFloat) -> CGFloat) = { (origin) in
-        return origin.auto()
+    static func conversion(_ value: Double) -> Double {
+        return conversionClosure(value)
     }
 }
 
-fileprivate protocol AutoCalculationable {
+protocol AutoCalculationable {
     
     /// 自动计算
     ///
     /// - Returns: 结果
-    func auto() -> Double
+    func auto() -> Self
 }
 
 extension Double: AutoCalculationable {
@@ -85,6 +94,53 @@ extension BinaryFloatingPoint {
     }
 }
 
+extension CGPoint: AutoCalculationable {
+    
+    public func auto() -> CGPoint {
+        return CGPoint(x: x.auto(), y: y.auto())
+    }
+}
+
+extension CGSize: AutoCalculationable {
+    
+    public func auto() -> CGSize {
+        return CGSize(width: width.auto(), height: height.auto())
+    }
+}
+
+extension CGRect: AutoCalculationable {
+    
+    public func auto() -> CGRect {
+        return CGRect(origin: origin.auto(), size: size.auto())
+    }
+}
+
+extension CGVector: AutoCalculationable {
+    
+    public func auto() -> CGVector {
+        return CGVector(dx: dx.auto(), dy: dy.auto())
+    }
+}
+
+extension UIOffset: AutoCalculationable {
+    
+    public func auto() -> UIOffset {
+        return UIOffset(horizontal: horizontal.auto(), vertical: vertical.auto())
+    }
+}
+
+extension UIEdgeInsets: AutoCalculationable {
+    
+    public func auto() -> UIEdgeInsets {
+        return UIEdgeInsets(
+            top: top.auto(),
+            left: left.auto(),
+            bottom: bottom.auto(),
+            right: right.auto()
+        )
+    }
+}
+
 
 extension NSLayoutConstraint {
     
@@ -93,7 +149,7 @@ extension NSLayoutConstraint {
         set {
             guard newValue else { return }
             
-            constant = Auto.adaptation(constant)
+            constant = constant.auto()
         }
     }
 }
@@ -103,7 +159,7 @@ extension UIView {
     @IBInspectable private var autoCornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set {
-            let value = Auto.adaptation(newValue)
+            let value = newValue.auto()
             layer.masksToBounds = true
             layer.cornerRadius = abs(CGFloat(Int(value * 100)) / 100)
         }
@@ -122,9 +178,9 @@ extension UILabel {
             
             font = UIFont(
                 name: font.fontName,
-                size: Auto.adaptation(font.pointSize)
+                size: font.pointSize.auto()
             )
-            attributedText = text.reset(font: { Auto.adaptation($0) })
+            attributedText = text.reset(font: { $0.auto() })
         }
     }
     
@@ -134,7 +190,16 @@ extension UILabel {
             guard newValue else { return }
             guard let text = attributedText else { return }
             
-            attributedText = text.reset(line: { Auto.adaptation($0) })
+            attributedText = text.reset(line: { $0.auto() })
+        }
+    }
+    
+    @IBInspectable private var autoShadowOffset: Bool {
+        get { return false }
+        set {
+            guard newValue else { return }
+            
+            shadowOffset = shadowOffset.auto()
         }
     }
 }
@@ -149,7 +214,7 @@ extension UITextView {
             
             self.font = UIFont(
                 name: font.fontName,
-                size: Auto.adaptation(font.pointSize)
+                size: font.pointSize.auto()
             )
         }
     }
@@ -165,7 +230,7 @@ extension UITextField {
             
             self.font = UIFont(
                 name: font.fontName,
-                size: Auto.adaptation(font.pointSize)
+                size: font.pointSize.auto()
             )
         }
     }
@@ -179,10 +244,10 @@ extension UIImageView {
             guard newValue else { return }
             
             if let width = image?.size.width {
-                image = image?.scaled(to: Auto.adaptation(width))
+                image = image?.scaled(to: width.auto())
             }
             if let width = highlightedImage?.size.width {
-                highlightedImage = highlightedImage?.scaled(to: Auto.adaptation(width))
+                highlightedImage = highlightedImage?.scaled(to: width.auto())
             }
         }
     }
@@ -208,7 +273,7 @@ extension UIButton {
                 let font = label.font {
                 label.font = UIFont(
                     name: font.fontName,
-                    size: Auto.adaptation(font.pointSize)
+                    size: font.pointSize.auto()
                 )
             }
             
@@ -219,8 +284,8 @@ extension UIButton {
             }
             titles.filtered(duplication: { $0.1 }).forEach {
                 setAttributedTitle(
-                    $1.reset(font: { Auto.adaptation($0) }),
-                    for: states[$0]
+                    $0.1.reset(font: { $0.auto() }),
+                    for: states[$0.0]
                 )
             }
         }
@@ -245,8 +310,8 @@ extension UIButton {
             }
             images.filtered(duplication: { $0.1 }).forEach {
                 setImage(
-                    $1.scaled(to: Auto.adaptation($1.size.width)),
-                    for: states[$0]
+                    $0.1.scaled(to: $0.1.size.width.auto()),
+                    for: states[$0.0]
                 )
             }
             
@@ -257,8 +322,8 @@ extension UIButton {
             }
             backgrounds.filtered(duplication: { $0.1 }).forEach {
                 setBackgroundImage(
-                    $1.scaled(to: Auto.adaptation($1.size.width)),
-                    for: states[$0]
+                    $0.1.scaled(to: $0.1.size.width.auto()),
+                    for: states[$0.0]
                 )
             }
         }
@@ -269,12 +334,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            titleEdgeInsets = UIEdgeInsets(
-                top: Auto.adaptation(titleEdgeInsets.top),
-                left: Auto.adaptation(titleEdgeInsets.left),
-                bottom: Auto.adaptation(titleEdgeInsets.bottom),
-                right: Auto.adaptation(titleEdgeInsets.right)
-            )
+            titleEdgeInsets = titleEdgeInsets.auto()
         }
     }
     
@@ -283,12 +343,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            imageEdgeInsets = UIEdgeInsets(
-                top: Auto.adaptation(imageEdgeInsets.top),
-                left: Auto.adaptation(imageEdgeInsets.left),
-                bottom: Auto.adaptation(imageEdgeInsets.bottom),
-                right: Auto.adaptation(imageEdgeInsets.right)
-            )
+            imageEdgeInsets = imageEdgeInsets.auto()
         }
     }
     
@@ -297,12 +352,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            contentEdgeInsets = UIEdgeInsets(
-                top: Auto.adaptation(contentEdgeInsets.top),
-                left: Auto.adaptation(contentEdgeInsets.left),
-                bottom: Auto.adaptation(contentEdgeInsets.bottom),
-                right: Auto.adaptation(contentEdgeInsets.right)
-            )
+            contentEdgeInsets = contentEdgeInsets.auto()
         }
     }
 }
@@ -315,7 +365,7 @@ extension UIStackView {
         set {
             guard newValue else { return }
             
-            spacing = Auto.adaptation(spacing)
+            spacing = spacing.auto()
         }
     }
 }

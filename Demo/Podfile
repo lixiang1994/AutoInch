@@ -1,0 +1,9 @@
+platform :ios, '10.0'
+inhibit_all_warnings!
+
+target 'Demo' do
+  use_frameworks!
+  
+  pod 'AutoInch', :path => "../"
+  
+end

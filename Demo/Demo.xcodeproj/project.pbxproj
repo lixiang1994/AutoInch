@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A42CE6B7492C776E2061D67 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB80693A24BF052917BA4B1F /* Pods_Demo.framework */; };
 		C91AE68D219199D4005A8286 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91AE68C219199D4005A8286 /* NavigationController.swift */; };
-		C93AA3CE225B11BD00EDAB53 /* Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3CA225B11BD00EDAB53 /* Auto.swift */; };
-		C93AA3CF225B11BD00EDAB53 /* Inch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3CB225B11BD00EDAB53 /* Inch.swift */; };
 		C9E8AED1218DADD600332D5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8AED0218DADD600332D5C /* AppDelegate.swift */; };
 		C9E8AED3218DADD600332D5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8AED2218DADD600332D5C /* ViewController.swift */; };
 		C9E8AED6218DADD600332D5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E8AED4218DADD600332D5C /* Main.storyboard */; };
@@ -23,11 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31F26B46261634762DCA08EF /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		6D2A1C9D8BBE4301AC51FA2A /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C91AE68C219199D4005A8286 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		C93AA3CA225B11BD00EDAB53 /* Auto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto.swift; sourceTree = "<group>"; };
-		C93AA3CB225B11BD00EDAB53 /* Inch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inch.swift; sourceTree = "<group>"; };
-		C93AA3CC225B11BD00EDAB53 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C93AA3CD225B11BD00EDAB53 /* AutoInch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInch.h; sourceTree = "<group>"; };
 		C9E8AECD218DADD600332D5C /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E8AED0218DADD600332D5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9E8AED2218DADD600332D5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +37,7 @@
 		C9E8AEEF219001E000332D5C /* StoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoard.swift; sourceTree = "<group>"; };
 		C9E8AEF1219019BE00332D5C /* TikTokPasswordLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokPasswordLoginViewController.swift; sourceTree = "<group>"; };
 		C9E8AEF32190339400332D5C /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		DB80693A24BF052917BA4B1F /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,22 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A42CE6B7492C776E2061D67 /* Pods_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C93AA3C9225B11BD00EDAB53 /* Sources */ = {
+		3B067D1BB2517F78165BF166 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C93AA3CA225B11BD00EDAB53 /* Auto.swift */,
-				C93AA3CB225B11BD00EDAB53 /* Inch.swift */,
-				C93AA3CC225B11BD00EDAB53 /* Info.plist */,
-				C93AA3CD225B11BD00EDAB53 /* AutoInch.h */,
+				DB80693A24BF052917BA4B1F /* Pods_Demo.framework */,
 			);
-			name = Sources;
-			path = ../../Sources;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B9B50CAF0A18BE579ED7053 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				31F26B46261634762DCA08EF /* Pods-Demo.debug.xcconfig */,
+				6D2A1C9D8BBE4301AC51FA2A /* Pods-Demo.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		C9E8AEC4218DADD600332D5C = {
@@ -70,6 +74,8 @@
 			children = (
 				C9E8AECF218DADD600332D5C /* Demo */,
 				C9E8AECE218DADD600332D5C /* Products */,
+				8B9B50CAF0A18BE579ED7053 /* Pods */,
+				3B067D1BB2517F78165BF166 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,7 +90,6 @@
 		C9E8AECF218DADD600332D5C /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				C93AA3C9225B11BD00EDAB53 /* Sources */,
 				C9E8AEEE219001B700332D5C /* Utils */,
 				C9E8AEE7218FFFD800332D5C /* TikTok */,
 				C9E8AED0218DADD600332D5C /* AppDelegate.swift */,
@@ -140,9 +145,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9E8AEDF218DADD800332D5C /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
+				27871A0AD279A48DC5780669 /* [CP] Check Pods Manifest.lock */,
 				C9E8AEC9218DADD600332D5C /* Sources */,
 				C9E8AECA218DADD600332D5C /* Frameworks */,
 				C9E8AECB218DADD600332D5C /* Resources */,
+				34787AEFE0EEB1280DD997E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,6 +208,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27871A0AD279A48DC5780669 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34787AEFE0EEB1280DD997E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C9E8AEC9218DADD600332D5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -209,11 +258,9 @@
 				C9E8AED3218DADD600332D5C /* ViewController.swift in Sources */,
 				C9E8AED1218DADD600332D5C /* AppDelegate.swift in Sources */,
 				C9E8AEF2219019BE00332D5C /* TikTokPasswordLoginViewController.swift in Sources */,
-				C93AA3CF225B11BD00EDAB53 /* Inch.swift in Sources */,
 				C9E8AEED2190018100332D5C /* TikTokPhoneLoginViewController.swift in Sources */,
 				C91AE68D219199D4005A8286 /* NavigationController.swift in Sources */,
 				C9E8AEF42190339400332D5C /* Then.swift in Sources */,
-				C93AA3CE225B11BD00EDAB53 /* Auto.swift in Sources */,
 				C9E8AEF0219001E000332D5C /* StoryBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +405,7 @@
 		};
 		C9E8AEE0218DADD800332D5C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31F26B46261634762DCA08EF /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -377,6 +425,7 @@
 		};
 		C9E8AEE1218DADD800332D5C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D2A1C9D8BBE4301AC51FA2A /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
