@@ -1,6 +1,6 @@
 # AutoInch - 优雅的iPhone等比例/全尺寸精准适配工具
 
-![Swift](https://img.shields.io/badge/Swift-4.2-orange.svg)
+[![](https://img.shields.io/cocoapods/l/AutoInch.svg)](LICENSE)&nbsp;
 ![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 
 ## [天朝子民](README_CN.md)
@@ -142,7 +142,7 @@ If you extended the functionality of AutoInch yourself and want others to use it
 
 ## License
 
-AutoInch is under GPL license. See the [LICENSE](LICENSE) file for more info.
+AutoInch is under MIT license. See the [LICENSE](LICENSE) file for more info.
 
 
 >### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)

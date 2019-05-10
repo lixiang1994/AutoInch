@@ -138,7 +138,7 @@ print("this is " +
 
 ## 协议
 
-AutoInch 使用 GPL 协议. 有关更多信息，请参阅[LICENSE](LICENSE)文件.
+AutoInch 使用 MIT 协议. 有关更多信息，请参阅[LICENSE](LICENSE)文件.
 
 
 >### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)

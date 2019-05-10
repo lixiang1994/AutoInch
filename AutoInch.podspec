@@ -6,7 +6,7 @@ s.summary      = "优雅的iPhone 等比例/全尺寸 适配工具"
 
 s.homepage     = "https://github.com/lixiang1994/AutoInch"
 
-s.license      = { :type => "GPL", :file => "LICENSE" }
+s.license      = { :type => "MIT", :file => "LICENSE" }
 
 s.author       = { "LEE" => "18611401994@163.com" }
 
