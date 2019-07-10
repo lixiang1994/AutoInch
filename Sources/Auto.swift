@@ -11,6 +11,8 @@
 //  Copyright © 2018年 lee. All rights reserved.
 //
 
+#if canImport(Foundation)
+
 import Foundation
 
 #if os(iOS)
@@ -32,11 +34,11 @@ public enum Auto {
             return origin
         }
         
-        let base = 375.0 
+        let base = 375.0
         let screenWidth = Double(UIScreen.main.bounds.width)
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
-        return (origin * (width / base)).rounded(places: 3)
+        return (origin * (width / base)).rounded(3)
     }
 }
 
@@ -149,7 +151,7 @@ extension NSLayoutConstraint {
         set {
             guard newValue else { return }
             
-            constant = constant.auto()
+            constant = constant.auto().rounded(0)
         }
     }
 }
@@ -159,7 +161,7 @@ extension UIView {
     @IBInspectable private var autoCornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set {
-            let value = newValue.auto()
+            let value: CGFloat = newValue.auto().rounded(0)
             layer.masksToBounds = true
             layer.cornerRadius = abs(CGFloat(Int(value * 100)) / 100)
         }
@@ -178,9 +180,9 @@ extension UILabel {
             
             font = UIFont(
                 name: font.fontName,
-                size: font.pointSize.auto()
+                size: font.pointSize.auto().rounded(0)
             )
-            attributedText = text.reset(font: { $0.auto() })
+            attributedText = text.reset(font: { $0.auto().rounded(0) })
         }
     }
     
@@ -190,7 +192,7 @@ extension UILabel {
             guard newValue else { return }
             guard let text = attributedText else { return }
             
-            attributedText = text.reset(line: { $0.auto() })
+            attributedText = text.reset(line: { $0.auto().rounded(0) })
         }
     }
     
@@ -199,7 +201,7 @@ extension UILabel {
         set {
             guard newValue else { return }
             
-            shadowOffset = shadowOffset.auto()
+            shadowOffset = shadowOffset.auto().rounded(0)
         }
     }
 }
@@ -214,7 +216,7 @@ extension UITextView {
             
             self.font = UIFont(
                 name: font.fontName,
-                size: font.pointSize.auto()
+                size: font.pointSize.auto().rounded(0)
             )
         }
     }
@@ -230,7 +232,7 @@ extension UITextField {
             
             self.font = UIFont(
                 name: font.fontName,
-                size: font.pointSize.auto()
+                size: font.pointSize.auto().rounded(0)
             )
         }
     }
@@ -244,10 +246,10 @@ extension UIImageView {
             guard newValue else { return }
             
             if let width = image?.size.width {
-                image = image?.scaled(to: width.auto())
+                image = image?.scaled(to: width.auto().rounded(0))
             }
             if let width = highlightedImage?.size.width {
-                highlightedImage = highlightedImage?.scaled(to: width.auto())
+                highlightedImage = highlightedImage?.scaled(to: width.auto().rounded(0))
             }
         }
     }
@@ -273,7 +275,7 @@ extension UIButton {
                 let font = label.font {
                 label.font = UIFont(
                     name: font.fontName,
-                    size: font.pointSize.auto()
+                    size: font.pointSize.auto().rounded(0)
                 )
             }
             
@@ -284,7 +286,7 @@ extension UIButton {
             }
             titles.filtered(duplication: { $0.1 }).forEach {
                 setAttributedTitle(
-                    $0.1.reset(font: { $0.auto() }),
+                    $0.1.reset(font: { $0.auto().rounded(0) }),
                     for: states[$0.0]
                 )
             }
@@ -310,7 +312,7 @@ extension UIButton {
             }
             images.filtered(duplication: { $0.1 }).forEach {
                 setImage(
-                    $0.1.scaled(to: $0.1.size.width.auto()),
+                    $0.1.scaled(to: $0.1.size.width.auto().rounded(0)),
                     for: states[$0.0]
                 )
             }
@@ -322,7 +324,7 @@ extension UIButton {
             }
             backgrounds.filtered(duplication: { $0.1 }).forEach {
                 setBackgroundImage(
-                    $0.1.scaled(to: $0.1.size.width.auto()),
+                    $0.1.scaled(to: $0.1.size.width.auto().rounded(0)),
                     for: states[$0.0]
                 )
             }
@@ -334,7 +336,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            titleEdgeInsets = titleEdgeInsets.auto()
+            titleEdgeInsets = titleEdgeInsets.auto().rounded(0)
         }
     }
     
@@ -343,7 +345,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            imageEdgeInsets = imageEdgeInsets.auto()
+            imageEdgeInsets = imageEdgeInsets.auto().rounded(0)
         }
     }
     
@@ -352,7 +354,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            contentEdgeInsets = contentEdgeInsets.auto()
+            contentEdgeInsets = contentEdgeInsets.auto().rounded(0)
         }
     }
 }
@@ -365,7 +367,7 @@ extension UIStackView {
         set {
             guard newValue else { return }
             
-            spacing = spacing.auto()
+            spacing = spacing.auto().rounded(0)
         }
     }
 }
@@ -434,12 +436,60 @@ fileprivate extension Array {
     }
 }
 
-fileprivate extension Double {
+public extension Double {
     
-    func rounded(places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
+    func rounded(_ decimalPlaces: Int) -> Double {
+        let divisor = pow(10.0, Double(max(0, decimalPlaces)))
         return (self * divisor).rounded() / divisor
     }
 }
+
+public extension BinaryFloatingPoint {
+    
+    func rounded(_ decimalPlaces: Int) -> Double {
+        let temp = Double("\(self)") ?? 0
+        return temp.rounded(decimalPlaces)
+    }
+    
+    func rounded<T>(_ decimalPlaces: Int) -> T where T: BinaryFloatingPoint {
+        let temp = Double("\(self)") ?? 0
+        return T(temp.rounded(decimalPlaces))
+    }
+}
+
+public extension CGPoint {
+    
+    func rounded(_ decimalPlaces: Int) -> CGPoint {
+        return CGPoint(x: x.rounded(decimalPlaces), y: y.rounded(decimalPlaces))
+    }
+}
+
+public extension CGSize {
+    
+    func rounded(_ decimalPlaces: Int) -> CGSize {
+        return CGSize(width: width.rounded(decimalPlaces), height: height.rounded(decimalPlaces))
+    }
+}
+
+public extension CGRect {
+    
+    func rounded(_ decimalPlaces: Int) -> CGRect {
+        return CGRect(origin: origin.rounded(decimalPlaces), size: size.rounded(decimalPlaces))
+    }
+}
+
+public extension UIEdgeInsets {
+    
+    func rounded(_ decimalPlaces: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(
+            top: top.rounded(decimalPlaces),
+            left: left.rounded(decimalPlaces),
+            bottom: bottom.rounded(decimalPlaces),
+            right: right.rounded(decimalPlaces)
+        )
+    }
+}
+
+#endif
 
 #endif
