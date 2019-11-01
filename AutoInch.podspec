@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "AutoInch"
-s.version      = "1.3.0"
+s.version      = "1.3.1"
 s.summary      = "优雅的iPhone 等比例/全尺寸 适配工具"
 
 s.homepage     = "https://github.com/lixiang1994/AutoInch"

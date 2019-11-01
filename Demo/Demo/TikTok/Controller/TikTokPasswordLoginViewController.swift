@@ -187,6 +187,15 @@ extension TikTokPasswordLoginViewController {
             button.setImage(#imageLiteral(resourceName: "tiktok_textfield_clear"), for: .normal)
             button.adjustsImageWhenHighlighted = false
         }
+        
+        phoneTextField.attributedPlaceholder = .init(
+            string: phoneTextField.placeholder ?? "",
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
+        )
+        passwordTextField.attributedPlaceholder = .init(
+            string: passwordTextField.placeholder ?? "",
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
+        )
     }
     
     private func setupNotification() {

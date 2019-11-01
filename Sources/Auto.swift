@@ -178,10 +178,7 @@ extension UILabel {
                 return
             }
             
-            font = UIFont(
-                name: font.fontName,
-                size: font.pointSize.auto().rounded(0)
-            )
+            font = font.withSize(font.pointSize.auto().rounded(0))
             attributedText = text.reset(font: { $0.auto().rounded(0) })
         }
     }
@@ -214,10 +211,7 @@ extension UITextView {
             guard newValue else { return }
             guard let font = font else { return }
             
-            self.font = UIFont(
-                name: font.fontName,
-                size: font.pointSize.auto().rounded(0)
-            )
+            self.font = font.withSize(font.pointSize.auto().rounded(0))
         }
     }
 }
@@ -230,10 +224,7 @@ extension UITextField {
             guard newValue else { return }
             guard let font = font else { return }
             
-            self.font = UIFont(
-                name: font.fontName,
-                size: font.pointSize.auto().rounded(0)
-            )
+            self.font = font.withSize(font.pointSize.auto().rounded(0))
         }
     }
 }
@@ -273,10 +264,7 @@ extension UIButton {
                 let _ = title(for: state),
                 let label = titleLabel,
                 let font = label.font {
-                label.font = UIFont(
-                    name: font.fontName,
-                    size: font.pointSize.auto().rounded(0)
-                )
+                label.font = font.withSize(font.pointSize.auto().rounded(0))
             }
             
             let titles = states.enumerated().compactMap {
@@ -382,10 +370,7 @@ fileprivate extension NSAttributedString {
         ) { (attributes, range, stop) in
             var temp = attributes
             if let font = attributes[.font] as? UIFont {
-                temp[.font] = UIFont(
-                    name: font.fontName,
-                    size: size(font.pointSize)
-                )
+                temp[.font] = font.withSize(size(font.pointSize))
             }
             string.setAttributes(temp, range: range)
         }
