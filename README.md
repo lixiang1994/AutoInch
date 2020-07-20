@@ -1,6 +1,6 @@
 # AutoInch - 优雅的iPhone等比例/全尺寸精准适配工具
 
-[![License](https://img.shields.io/cocoapods/l/AttributedString.svg)](LICENSE)&nbsp;
+[![License](https://img.shields.io/cocoapods/l/AutoInch.svg)](LICENSE)&nbsp;
 ![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg)&nbsp;
 ![Platform](https://img.shields.io/cocoapods/p/AutoInch.svg?style=flat)&nbsp;
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-4BC51D.svg?style=flat")](https://swift.org/package-manager/)&nbsp;
