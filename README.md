@@ -152,3 +152,8 @@ AutoInch is under MIT license. See the [LICENSE](LICENSE) file for more info.
 >### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)
 >### [相关文章 Auto](https://www.jianshu.com/p/e0e12206e0c7)
 >### [相关文章 Auto](https://www.jianshu.com/p/48c67d0c95b6)
+
+-----
+
+> ## 欢迎入群交流
+![QQ](https://github.com/lixiang1994/Resources/blob/master/QQClub/QQClub.JPG)
