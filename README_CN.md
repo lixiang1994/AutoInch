@@ -1,7 +1,11 @@
 # AutoInch - 优雅的iPhone等比例/全尺寸精准适配工具
 
-[![](https://img.shields.io/cocoapods/l/AutoInch.svg)](LICENSE)&nbsp;
-![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+[![License](https://img.shields.io/cocoapods/l/AutoInch.svg)](LICENSE)&nbsp;
+![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg)&nbsp;
+![Platform](https://img.shields.io/cocoapods/p/AutoInch.svg?style=flat)&nbsp;
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-4BC51D.svg?style=flat")](https://swift.org/package-manager/)&nbsp;
+[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
+[![Cocoapods](https://img.shields.io/cocoapods/v/AutoInch.svg)](https://cocoapods.org)
 
 ## 特性
 
@@ -144,3 +148,9 @@ AutoInch 使用 MIT 协议. 有关更多信息，请参阅[LICENSE](LICENSE)文�
 >### [相关文章 Inch](https://www.jianshu.com/p/d2c09cb65ef7)
 >### [相关文章 Auto](https://www.jianshu.com/p/e0e12206e0c7)
 >### [相关文章 Auto](https://www.jianshu.com/p/48c67d0c95b6)
+
+
+-----
+
+> ## 欢迎入群交流
+![QQ](https://github.com/lixiang1994/Resources/blob/master/QQClub/QQClub.JPG)
