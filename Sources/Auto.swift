@@ -38,7 +38,9 @@ public enum Auto {
         let screenWidth = Double(UIScreen.main.bounds.width)
         let screenHeight = Double(UIScreen.main.bounds.height)
         let width = min(screenWidth, screenHeight)
-        return (origin * (width / base)).rounded(3)
+        let result = origin * (width / base)
+        let scale = Double(UIScreen.main.scale)
+        return (result * scale).rounded(.up) / scale
     }
 }
 
@@ -151,7 +153,7 @@ extension NSLayoutConstraint {
         set {
             guard newValue else { return }
             
-            constant = constant.auto().rounded(0)
+            constant = constant.auto()
         }
     }
 }
@@ -161,7 +163,7 @@ extension UIView {
     @IBInspectable private var autoCornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set {
-            let value: CGFloat = newValue.auto().rounded(0)
+            let value: CGFloat = newValue.auto()
             layer.masksToBounds = true
             layer.cornerRadius = abs(CGFloat(Int(value * 100)) / 100)
         }
@@ -178,8 +180,8 @@ extension UILabel {
                 return
             }
             
-            font = font.withSize(font.pointSize.auto().rounded(0))
-            attributedText = text.reset(font: { $0.auto().rounded(0) })
+            font = font.withSize(font.pointSize.auto())
+            attributedText = text.reset(font: { $0.auto() })
         }
     }
     
@@ -189,7 +191,7 @@ extension UILabel {
             guard newValue else { return }
             guard let text = attributedText else { return }
             
-            attributedText = text.reset(line: { $0.auto().rounded(0) })
+            attributedText = text.reset(line: { $0.auto() })
         }
     }
     
@@ -198,7 +200,7 @@ extension UILabel {
         set {
             guard newValue else { return }
             
-            shadowOffset = shadowOffset.auto().rounded(0)
+            shadowOffset = shadowOffset.auto()
         }
     }
 }
@@ -211,7 +213,7 @@ extension UITextView {
             guard newValue else { return }
             guard let font = font else { return }
             
-            self.font = font.withSize(font.pointSize.auto().rounded(0))
+            self.font = font.withSize(font.pointSize.auto())
         }
     }
 }
@@ -224,7 +226,7 @@ extension UITextField {
             guard newValue else { return }
             guard let font = font else { return }
             
-            self.font = font.withSize(font.pointSize.auto().rounded(0))
+            self.font = font.withSize(font.pointSize.auto())
         }
     }
 }
@@ -237,10 +239,10 @@ extension UIImageView {
             guard newValue else { return }
             
             if let width = image?.size.width {
-                image = image?.scaled(to: width.auto().rounded(0))
+                image = image?.scaled(to: width.auto())
             }
             if let width = highlightedImage?.size.width {
-                highlightedImage = highlightedImage?.scaled(to: width.auto().rounded(0))
+                highlightedImage = highlightedImage?.scaled(to: width.auto())
             }
         }
     }
@@ -264,7 +266,7 @@ extension UIButton {
                 let _ = title(for: state),
                 let label = titleLabel,
                 let font = label.font {
-                label.font = font.withSize(font.pointSize.auto().rounded(0))
+                label.font = font.withSize(font.pointSize.auto())
             }
             
             let titles = states.enumerated().compactMap {
@@ -274,7 +276,7 @@ extension UIButton {
             }
             titles.filtered(duplication: { $0.1 }).forEach {
                 setAttributedTitle(
-                    $0.1.reset(font: { $0.auto().rounded(0) }),
+                    $0.1.reset(font: { $0.auto() }),
                     for: states[$0.0]
                 )
             }
@@ -300,7 +302,7 @@ extension UIButton {
             }
             images.filtered(duplication: { $0.1 }).forEach {
                 setImage(
-                    $0.1.scaled(to: $0.1.size.width.auto().rounded(0)),
+                    $0.1.scaled(to: $0.1.size.width.auto()),
                     for: states[$0.0]
                 )
             }
@@ -312,7 +314,7 @@ extension UIButton {
             }
             backgrounds.filtered(duplication: { $0.1 }).forEach {
                 setBackgroundImage(
-                    $0.1.scaled(to: $0.1.size.width.auto().rounded(0)),
+                    $0.1.scaled(to: $0.1.size.width.auto()),
                     for: states[$0.0]
                 )
             }
@@ -324,7 +326,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            titleEdgeInsets = titleEdgeInsets.auto().rounded(0)
+            titleEdgeInsets = titleEdgeInsets.auto()
         }
     }
     
@@ -333,7 +335,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            imageEdgeInsets = imageEdgeInsets.auto().rounded(0)
+            imageEdgeInsets = imageEdgeInsets.auto()
         }
     }
     
@@ -342,7 +344,7 @@ extension UIButton {
         set {
             guard newValue else { return }
             
-            contentEdgeInsets = contentEdgeInsets.auto().rounded(0)
+            contentEdgeInsets = contentEdgeInsets.auto()
         }
     }
 }
@@ -355,7 +357,7 @@ extension UIStackView {
         set {
             guard newValue else { return }
             
-            spacing = spacing.auto().rounded(0)
+            spacing = spacing.auto()
         }
     }
 }
