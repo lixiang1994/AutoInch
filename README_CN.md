@@ -109,7 +109,7 @@ Storyboard / Xib:
 // default other screen numberOfLines = 0
 // 3.5 inches screen numberOfLines = 1
 // 4.0 inches screen numberOfLines = 2
-label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0)).value
+label.numberOfLines = 0.screen.inch(._3_5, is: 1).inch(._4_0, is: 2).value
 ```
 
 
@@ -117,24 +117,23 @@ label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0
 // default other screen numberOfLines = 0
 // width 320 screen numberOfLines = 1
 // width 375 inches screen numberOfLines = 2
-label.numberOfLines = 0.screen.set(1, for: .width(._320)).set(2, for: .width(._375)).value
+label.numberOfLines = 0.screen.width(._320, is: 1).width(._375, is: 2).value
 ```
 
-全部
 
 ```swift
 print("this is " +
     "default".screen
-    .set("宽度 320", for: .width(._320))
-    .set("宽度 375", for: .width(._375))
-    .set("高度 844", for: .height(._844))
-    .set("高度 812", for: .height(._812))
-    .set("4.7 英寸", for: .inch(._4_7))
-    .set("5.8 英寸", for: .inch(._5_8))
-    .set("6.5 英寸", for: .inch(._6_5))
-    .set("屏幕级别 紧凑屏", for: .level(.compact))
-    .set("屏幕级别 常规屏", for: .level(.regular))
-    .set("屏幕级别 全面屏", for: .level(.full))
+    .width(._320, is: "宽度 320")
+    .width(._375, is: "宽度 375")
+    .height(._844, is: "高度 844")
+    .height(._812, is: "高度 812")
+    .inch(._4_7, is: "4.7 英寸")
+    .inch(._5_8, is: "5.8 英寸")
+    .inch(._6_5, is: "6.5 英寸")
+    .level(.compact, is: "屏幕级别 紧凑屏")
+    .level(.regular, is: "屏幕级别 常规屏")
+    .level(.full, is: "屏幕级别 全面屏")
     .value
 )
 ```

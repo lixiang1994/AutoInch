@@ -42,14 +42,29 @@ extension ScreenCompatible {
 
 extension ScreenWrapper {
     
-    public func set(_ value: Base, for type: Screen) -> Self {
-        guard type.isCurrent else { return self }
-        self.value = value
+    public func width(_ types: Screen.Width... , is value: Base) -> Self {
+        for type in types where Screen.Width.current == type {
+            self.value = value
+        }
         return self
     }
     
-    public func set(_ value: Base, for types: Screen...) -> Self {
-        for type in types where type.isCurrent {
+    public func height(_ types: Screen.Height..., is value: Base) -> Self {
+        for type in types where Screen.Height.current == type {
+            self.value = value
+        }
+        return self
+    }
+    
+    public func inch(_ types: Screen.Inch..., is value: Base) -> Self {
+        for type in types where Screen.Inch.current == type {
+            self.value = value
+        }
+        return self
+    }
+    
+    public func level(_ types: Screen.Level..., is value: Base) -> Self {
+        for type in types where Screen.Level.current == type {
             self.value = value
         }
         return self
@@ -162,12 +177,6 @@ public enum Screen {
             }
         }
     }
-    
-    case inch(Inch)
-    case width(Width)
-    case height(Height)
-    
-    case level(Level)
 }
 
 extension Screen {
@@ -182,15 +191,6 @@ extension Screen {
     
     public static var isFull: Bool {
         return Level.current == .full
-    }
-    
-    public var isCurrent: Bool {
-        switch self {
-        case .width(let value):     return Width.current == value
-        case .height(let value):    return Height.current == value
-        case .inch(let value):      return Inch.current == value
-        case .level(let value):     return Level.current == value
-        }
     }
 }
 

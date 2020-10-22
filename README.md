@@ -112,7 +112,7 @@ e.g.
 // default other screen numberOfLines = 0
 // 3.5 inches screen numberOfLines = 1
 // 4.0 inches screen numberOfLines = 2
-label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0)).value
+label.numberOfLines = 0.screen.inch(._3_5, is: 1).inch(._4_0, is: 2).value
 ```
 
 
@@ -120,23 +120,23 @@ label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0
 // default other screen numberOfLines = 0
 // width 320 screen numberOfLines = 1
 // width 375 inches screen numberOfLines = 2
-label.numberOfLines = 0.screen.set(1, for: .width(._320)).set(2, for: .width(._375)).value
+label.numberOfLines = 0.screen.width(._320, is: 1).width(._375, is: 2).value
 ```
 
 
 ```swift
 print("this is " +
     "default".screen
-    .set("width 320", for: .width(._320))
-    .set("width 375", for: .width(._375))
-    .set("height 844", for: .height(._844))
-    .set("height 812", for: .height(._812))
-    .set("4.7 inches", for: .inch(._4_7))
-    .set("5.8 inches", for: .inch(._5_8))
-    .set("6.5 inches", for: .inch(._6_5))
-    .set("screen 3: 2", for: .level(.compact))
-    .set("screen 16: 9", for: .level(.regular))
-    .set("screen 19.5: 9", for: .level(.full))
+    .width(._320, is: "width 320")
+    .width(._375, is: "width 375")
+    .height(._844, is: "height 844")
+    .height(._812, is: "height 812")
+    .inch(._4_7, is: "4.7 inches")
+    .inch(._5_8, is: "5.8 inches")
+    .inch(._6_5, is: "6.5 inches")
+    .level(.compact, is: "screen 3: 2")
+    .level(.regular, is: "screen 16: 9")
+    .level(.full, is: "screen 19.5: 9")
     .value
 )
 ```
