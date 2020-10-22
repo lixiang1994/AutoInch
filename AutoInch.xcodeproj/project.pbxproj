@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BCECD15254163AD00399F82 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCECD14254163AD00399F82 /* Screen.swift */; };
 		C93AA3C6225B0DF600EDAB53 /* Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3C4225B0DF600EDAB53 /* Auto.swift */; };
-		C93AA3C7225B0DF600EDAB53 /* Inch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93AA3C5225B0DF600EDAB53 /* Inch.swift */; };
 		C99FEFD0224F87BB0060106A /* AutoInch.h in Headers */ = {isa = PBXBuildFile; fileRef = C99FEFCE224F87BB0060106A /* AutoInch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9BCECD14254163AD00399F82 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		C93AA3C4225B0DF600EDAB53 /* Auto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto.swift; sourceTree = "<group>"; };
-		C93AA3C5225B0DF600EDAB53 /* Inch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inch.swift; sourceTree = "<group>"; };
 		C99FEFCB224F87BB0060106A /* AutoInch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99FEFCE224F87BB0060106A /* AutoInch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoInch.h; sourceTree = "<group>"; };
 		C99FEFCF224F87BB0060106A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				C93AA3C4225B0DF600EDAB53 /* Auto.swift */,
-				C93AA3C5225B0DF600EDAB53 /* Inch.swift */,
+				9BCECD14254163AD00399F82 /* Screen.swift */,
 				C99FEFCE224F87BB0060106A /* AutoInch.h */,
 				C99FEFCF224F87BB0060106A /* Info.plist */,
 			);
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C93AA3C6225B0DF600EDAB53 /* Auto.swift in Sources */,
-				C93AA3C7225B0DF600EDAB53 /* Inch.swift in Sources */,
+				9BCECD15254163AD00399F82 /* Screen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +287,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 2.0.1;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.autoinch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -319,7 +319,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 2.0.1;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.autoinch;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
