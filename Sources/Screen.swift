@@ -49,7 +49,9 @@ extension ScreenWrapper {
     }
     
     public func set(_ value: Base, for types: Screen...) -> Self {
-        types.forEach { set(value, for: $0) }
+        for type in types where type.isCurrent {
+            self.value = value
+        }
         return self
     }
 }
