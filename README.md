@@ -104,7 +104,7 @@ Storyboard / Xib:
 ![Constraint](Resources/Storyboard%20Constraint.png)
 ![UILabel Font](Resources/Storyboard%20Label%20Font.png)
 
-### Inch
+### Screen
 
 e.g.
 
@@ -112,22 +112,32 @@ e.g.
 // default other screen numberOfLines = 0
 // 3.5 inches screen numberOfLines = 1
 // 4.0 inches screen numberOfLines = 2
-label.numberOfLines = 0.i35(1).i40(2)
+label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0)).value
 ```
 
-all
+
+```swift
+// default other screen numberOfLines = 0
+// width 320 screen numberOfLines = 1
+// width 375 inches screen numberOfLines = 2
+label.numberOfLines = 0.screen.set(1, for: .width(._320)).set(2, for: .width(._375)).value
+```
+
 
 ```swift
 print("this is " +
-    "default"
-    .i35("3.5 inches (iPhone 4, 4s)")
-    .i40("3.5 inches (iPhone 5, 5s, SE)")
-    .i47("3.5 inches (iPhone 6, 7, 8)")
-    .i55("3.5 inches (iPhone 6, 7, 8 Plus)")
-    .ifull("full screen (iPhone X, Xs, XsMax)")
-    .i58full("5.8 inches (iPhone X, Xs)")
-    .i61full("6.1 inches (iPhone XR)")
-    .i65full("6.5 inches (iPhone XsMax)")
+    "default".screen
+    .set("width 320", for: .width(._320))
+    .set("width 375", for: .width(._375))
+    .set("height 844", for: .height(._844))
+    .set("height 812", for: .height(._812))
+    .set("4.7 inches", for: .inch(._4_7))
+    .set("5.8 inches", for: .inch(._5_8))
+    .set("6.5 inches", for: .inch(._6_5))
+    .set("screen 3: 2", for: .level(.compact))
+    .set("screen 16: 9", for: .level(.regular))
+    .set("screen 19.5: 9", for: .level(.full))
+    .value
 )
 ```
 

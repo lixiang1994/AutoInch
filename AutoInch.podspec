@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
 s.name         = "AutoInch"
-s.version      = "1.3.2"
-s.summary      = "优雅的iPhone 等比例/全尺寸 适配工具"
+s.version      = "2.0.0"
+s.summary      = "优雅的iPhone 等比例/精准 适配工具"
 
 s.homepage     = "https://github.com/lixiang1994/AutoInch"
 
@@ -20,7 +20,6 @@ s.requires_arc = true
 
 s.frameworks = "UIKit", "Foundation"
 
-s.swift_version = "4.2"
-s.swift_versions = ["4.2", "5.0"]
+s.swift_versions = ["5.0"]
 
 end

@@ -15,17 +15,25 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        print("this is " +
-            "default"
-            .i35("3.5 inches (iPhone 4, 4s)")
-            .i40("4.0 inches (iPhone 5, 5s, SE)")
-            .i47("4.7 inches (iPhone 6, 7, 8)")
-            .i55("5.5 inches (iPhone 6, 7, 8 Plus)")
-            .ifull("full screen (iPhone X, Xs, XsMax)")
-            .i58full("5.8 inches (iPhone X, Xs)")
-            .i61full("6.1 inches (iPhone XR)")
-            .i65full("6.5 inches (iPhone XsMax)")
+        print(
+            "this is " +
+                "default".screen
+                .set("宽度 320", for: .width(._320))
+                .set("宽度 375", for: .width(._375))
+                .set("高度 844", for: .height(._844))
+                .set("高度 812", for: .height(._812))
+                .set("4.7 英寸", for: .inch(._4_7))
+                .set("5.8 英寸", for: .inch(._5_8))
+                .set("6.5 英寸", for: .inch(._6_5))
+                .set("屏幕级别 紧凑屏", for: .level(.compact))
+                .set("屏幕级别 常规屏", for: .level(.regular))
+                .set("屏幕级别 全面屏", for: .level(.full))
+                .value
         )
+        0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0)).value
+        print(0.screen.set(1, for: .level(.full)).set(2, for: .inch(._6_1)).value)
+        
+        print("当前屏幕级别: \(Screen.Level.current)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

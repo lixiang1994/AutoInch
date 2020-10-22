@@ -109,22 +109,33 @@ Storyboard / Xib:
 // default other screen numberOfLines = 0
 // 3.5 inches screen numberOfLines = 1
 // 4.0 inches screen numberOfLines = 2
-label.numberOfLines = 0.i35(1).i40(2)
+label.numberOfLines = 0.screen.set(1, for: .inch(._3_5)).set(2, for: .inch(._4_0)).value
+```
+
+
+```swift
+// default other screen numberOfLines = 0
+// width 320 screen numberOfLines = 1
+// width 375 inches screen numberOfLines = 2
+label.numberOfLines = 0.screen.set(1, for: .width(._320)).set(2, for: .width(._375)).value
 ```
 
 全部
 
 ```swift
 print("this is " +
-    "default"
-    .i35("3.5 inches (iPhone 4, 4s)")
-    .i40("3.5 inches (iPhone 5, 5s, SE)")
-    .i47("3.5 inches (iPhone 6, 7, 8)")
-    .i55("3.5 inches (iPhone 6, 7, 8 Plus)")
-    .ifull("full screen (iPhone X, Xs, XsMax)")
-    .i58full("5.8 inches (iPhone X, Xs)")
-    .i61full("6.1 inches (iPhone XR)")
-    .i65full("6.5 inches (iPhone XsMax)")
+    "default".screen
+    .set("宽度 320", for: .width(._320))
+    .set("宽度 375", for: .width(._375))
+    .set("高度 844", for: .height(._844))
+    .set("高度 812", for: .height(._812))
+    .set("4.7 英寸", for: .inch(._4_7))
+    .set("5.8 英寸", for: .inch(._5_8))
+    .set("6.5 英寸", for: .inch(._6_5))
+    .set("屏幕级别 紧凑屏", for: .level(.compact))
+    .set("屏幕级别 常规屏", for: .level(.regular))
+    .set("屏幕级别 全面屏", for: .level(.full))
+    .value
 )
 ```
 
