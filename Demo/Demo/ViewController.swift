@@ -34,6 +34,7 @@ class ViewController: UITableViewController {
         print(0.screen.level(.full, is: 1).inch(._6_1, is: 2).value)
         
         print("当前屏幕级别: \(Screen.Level.current)")
+        print("是否为全面屏: \(Screen.isFull)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
