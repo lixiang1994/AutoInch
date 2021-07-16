@@ -30,11 +30,18 @@ class ViewController: UITableViewController {
                 .level(.full, is: "屏幕级别 全面屏")
                 .value
         )
-        0.screen.inch(._3_5, is: 1).inch(._4_0, is: 2).value
+        
+        
+        // 默认值 0 在3.5英寸的屏幕时返回1, 在4.0英寸的屏幕时返回2
+        print(0.screen.inch(._3_5, is: 1).inch(._4_0, is: 2).value)
+        // 默认值 0 在全面屏时返回1, 在6.1英寸的屏幕时返回2
         print(0.screen.level(.full, is: 1).inch(._6_1, is: 2).value)
+        // 默认值 100 在宽度为375级别的屏幕时 正常返回120, 如果为缩放模式则返回110
+        print(100.screen.width(._375, is: 120, zoomed: 110).value)
         
         print("当前屏幕级别: \(Screen.Level.current)")
         print("是否为全面屏: \(Screen.isFull)")
+        print("是否为缩放模式: \(Screen.isZoomedMode)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

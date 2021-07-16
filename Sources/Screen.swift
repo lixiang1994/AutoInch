@@ -42,30 +42,54 @@ extension ScreenCompatible {
 
 extension ScreenWrapper {
     
-    public func width(_ types: Screen.Width... , is value: Base) -> Self {
+    public func width(_ types: Screen.Width..., is value: Base) -> Self {
+        return width(types, is: value, zoomed: value)
+    }
+    public func width(_ types: Screen.Width..., is value: Base, zoomed: Base) -> Self {
+        return width(types, is: value, zoomed: zoomed)
+    }
+    private func width(_ types: [Screen.Width], is value: Base, zoomed: Base) -> Self {
         for type in types where Screen.Width.current == type {
-            self.value = value
+            self.value = Screen.isZoomedMode ? zoomed : value
         }
         return self
     }
     
     public func height(_ types: Screen.Height..., is value: Base) -> Self {
+        return height(types, is: value, zoomed: value)
+    }
+    public func height(_ types: Screen.Height..., is value: Base, zoomed: Base) -> Self {
+        return height(types, is: value, zoomed: zoomed)
+    }
+    private func height(_ types: [Screen.Height], is value: Base, zoomed: Base) -> Self {
         for type in types where Screen.Height.current == type {
-            self.value = value
+            self.value = Screen.isZoomedMode ? zoomed : value
         }
         return self
     }
     
     public func inch(_ types: Screen.Inch..., is value: Base) -> Self {
+        return inch(types, is: value, zoomed: value)
+    }
+    public func inch(_ types: Screen.Inch..., is value: Base, zoomed: Base) -> Self {
+        return inch(types, is: value, zoomed: zoomed)
+    }
+    private func inch(_ types: [Screen.Inch], is value: Base, zoomed: Base) -> Self {
         for type in types where Screen.Inch.current == type {
-            self.value = value
+            self.value = Screen.isZoomedMode ? zoomed : value
         }
         return self
     }
     
     public func level(_ types: Screen.Level..., is value: Base) -> Self {
+        return level(types, is: value, zoomed: value)
+    }
+    public func level(_ types: Screen.Level..., is value: Base, zoomed: Base) -> Self {
+        return level(types, is: value, zoomed: zoomed)
+    }
+    private func level(_ types: [Screen.Level], is value: Base, zoomed: Base) -> Self {
         for type in types where Screen.Level.current == type {
-            self.value = value
+            self.value = Screen.isZoomedMode ? zoomed : value
         }
         return self
     }
@@ -73,8 +97,22 @@ extension ScreenWrapper {
 
 public enum Screen {
     
-    public static var size: CGSize = UIScreen.main.bounds.size
-    public static var scale: CGFloat = UIScreen.main.scale
+    public static var isZoomedMode: Bool {
+        UIScreen.main.scale != UIScreen.main.nativeScale
+    }
+    
+    static var size: CGSize {
+        UIScreen.main.bounds.size
+    }
+    static var nativeSize: CGSize {
+        UIScreen.main.nativeBounds.size
+    }
+    static var scale: CGFloat {
+        UIScreen.main.scale
+    }
+    static var nativeScale: CGFloat {
+        UIScreen.main.nativeScale
+    }
     
     public enum Width: CGFloat {
         case unknown = -1
@@ -85,7 +123,7 @@ public enum Screen {
         case _428 = 428
         
         public static var current: Width {
-            return Width(rawValue: size.width) ?? .unknown
+            return Width(rawValue: nativeSize.width / scale) ?? .unknown
         }
     }
     
@@ -101,7 +139,7 @@ public enum Screen {
         case _926 = 926
         
         public static var current: Height {
-            return Height(rawValue: size.height) ?? .unknown
+            return Height(rawValue: nativeSize.height / scale) ?? .unknown
         }
     }
     
@@ -118,7 +156,7 @@ public enum Screen {
         case _6_7 = 6.7
         
         public static var current: Inch {
-            switch (size.width, size.height, scale) {
+            switch (nativeSize.width / scale, nativeSize.height / scale, scale) {
             case (320, 480, 2):
                 return ._3_5
                 
@@ -162,7 +200,7 @@ public enum Screen {
         case full
         
         public static var current: Level {
-            switch (size.width, size.height) {
+            switch (nativeSize.width / scale, nativeSize.height / scale) {
             case (320, 480):
                 return .compact
                 
