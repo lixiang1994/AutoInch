@@ -30,6 +30,20 @@ pod 'AutoInch'
 github "lixiang1994/AutoInch"
 ```
 
+#### [Swift Package Manager for Apple platforms](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+
+选择 Xcode 菜单 `File > Swift Packages > Add Package Dependency` 输入仓库地址.  
+```
+Repository: https://github.com/lixiang1994/AutoInch
+```
+
+#### [Swift Package Manager](https://swift.org/package-manager/)
+
+将以下内容添加到你的 `Package.swift`:
+```swift
+.package(url: "https://github.com/lixiang1994/AutoInch.git", from: "version")
+```
+
 ## 使用
 
 首先导入
