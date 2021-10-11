@@ -9,6 +9,8 @@
 
 ## 如果你还未使用过它, 推荐使用 [迁移版本 -> UIAdapter](https://github.com/lixiang1994/UIAdapter).
 
+## 如果你已经在使用它并且想一起迁移, 请查看 [迁移指南](https://github.com/lixiang1994/AutoInch/blob/master/RENAMEGUIDE.md)
+
 ## 特性
 
 - [x] 数值类型快速转换
