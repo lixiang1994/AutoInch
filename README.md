@@ -9,6 +9,8 @@
 
 ## [:cn:天朝子民](README_CN.md)
 
+## If you haven't used it, Please use [Rename -> UIAdapter](https://github.com/lixiang1994/UIAdapter).
+
 ## Features
 
 - [x] Numerical type fast conversion
