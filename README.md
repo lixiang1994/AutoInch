@@ -11,6 +11,8 @@
 
 ## If you haven't used it, Please use [Rename -> UIAdapter](https://github.com/lixiang1994/UIAdapter).
 
+## If you have used it and want to migrate together, Please check the [migration guide](https://github.com/lixiang1994/AutoInch/blob/master/RENAMEGUIDE.md)
+
 ## Features
 
 - [x] Numerical type fast conversion
