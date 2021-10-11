@@ -166,7 +166,7 @@ public enum Screen {
             case (375, 667, 2):
                 return ._4_7
                 
-            case (375, 812, 3) where UIDevice.iPhone12Mini:
+            case (375, 812, 3) where UIDevice.iPhoneMini:
                 return ._5_4
                 
             case (414, 736, 3):
@@ -249,14 +249,15 @@ extension UIEdgeInsets: ScreenCompatible {}
 
 fileprivate extension UIDevice {
     
-    static var iPhone12Mini: Bool {
-        let temp = "iPhone13,1"
+    static var iPhoneMini: Bool {
+        let temp = ["iPhone13,1", "iPhone14,4"]
+        
         switch identifier {
-        case temp:
+        case "iPhone13,1", "iPhone14,4":
             return true
             
-        case "i386", "x86_64":
-            return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] == temp
+        case "i386", "x86_64", "arm64":
+            return temp.contains(ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "")
             
         default:
             return false
