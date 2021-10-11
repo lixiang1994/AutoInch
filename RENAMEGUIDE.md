@@ -1,4 +1,4 @@
-# RenameGuide
+# Guide
 
 Repository has been migrated to [UIAdapter](https://github.com/lixiang1994/UIAdapter).
 
