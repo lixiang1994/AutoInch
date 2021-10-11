@@ -7,6 +7,8 @@
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
 [![Cocoapods](https://img.shields.io/cocoapods/v/AutoInch.svg)](https://cocoapods.org)
 
+## 如果你还未使用过它, 推荐使用 [迁移版本 -> UIAdapter](https://github.com/lixiang1994/UIAdapter).
+
 ## 特性
 
 - [x] 数值类型快速转换
