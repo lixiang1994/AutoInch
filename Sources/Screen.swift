@@ -98,7 +98,8 @@ extension ScreenWrapper {
 public enum Screen {
     
     public static var isZoomedMode: Bool {
-        UIScreen.main.scale != UIScreen.main.nativeScale
+        guard !isPlus else { return UIScreen.main.bounds.width == 375 }
+        return UIScreen.main.scale != UIScreen.main.nativeScale
     }
     
     static var size: CGSize {
@@ -123,6 +124,7 @@ public enum Screen {
         case _428 = 428
         
         public static var current: Width {
+            guard !isPlus else { return ._414 }
             return Width(rawValue: nativeSize.width / scale) ?? .unknown
         }
     }
@@ -139,6 +141,7 @@ public enum Screen {
         case _926 = 926
         
         public static var current: Height {
+            guard !isPlus else { return ._736 }
             return Height(rawValue: nativeSize.height / scale) ?? .unknown
         }
     }
@@ -156,6 +159,11 @@ public enum Screen {
         case _6_7 = 6.7
         
         public static var current: Inch {
+            guard !isPlus else {
+                // Plus 机型比较特殊 下面公式无法正确计算出尺寸
+                return ._5_5
+            }
+            
             switch (nativeSize.width / scale, nativeSize.height / scale, scale) {
             case (320, 480, 2):
                 return ._3_5
@@ -200,6 +208,11 @@ public enum Screen {
         case full
         
         public static var current: Level {
+            guard !isPlus else {
+                // Plus 机型比较特殊 下面公式无法正确计算出尺寸
+                return .regular
+            }
+            
             switch (nativeSize.width / scale, nativeSize.height / scale) {
             case (320, 480):
                 return .compact
@@ -214,6 +227,10 @@ public enum Screen {
                 return .unknown
             }
         }
+    }
+    
+    private static var isPlus: Bool {
+        return nativeSize.equalTo(.init(width: 1080, height: 1920))
     }
 }
 
