@@ -51,9 +51,9 @@ private func setupLayout() {
     }
 	
     lineView.snp.makeConstraints { (make) in
-	      make.left.right.equalToSuperview().inset(15.zoom())
-	      make.top.equalTo(titleLabel.snp.bottom)
-	      make.height.equalTo(1)
+	make.left.right.equalToSuperview().inset(15.zoom())
+	make.top.equalTo(titleLabel.snp.bottom)
+	make.height.equalTo(1)
     }
         
     titleLabel.snp.makeConstraints { (make) in
