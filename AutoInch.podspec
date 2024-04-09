@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "AutoInch"
-s.version      = "2.4.1"
+s.version      = "2.5.0"
 s.summary      = "优雅的iPhone 等比例/精准 适配工具"
 
 s.homepage     = "https://github.com/lixiang1994/AutoInch"
@@ -22,4 +22,9 @@ s.frameworks = "UIKit", "Foundation"
 
 s.swift_versions = ["5.0"]
 
+  s.subspec 'Privacy' do |ss|
+      ss.resource_bundles = {
+        "Privacy" => 'Sources/PrivacyInfo.xcprivacy'
+      }
+  end
 end
