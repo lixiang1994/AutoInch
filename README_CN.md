@@ -134,8 +134,8 @@ label.numberOfLines = 0.screen.inch(._3_5, is: 1).inch(._4_0, is: 2).value
 ```swift
 // default other screen numberOfLines = 0
 // width 320 screen numberOfLines = 1
-// width 375 inches screen numberOfLines = 2
-label.numberOfLines = 0.screen.width(._320, is: 1).width(._375, is: 2).value
+// width 375 screen numberOfLines = 2
+label.numberOfLines = 0.screen.width(equalTo: 320, is: 1).width(equalTo: 375, is: 2).value
 ```
 
 
