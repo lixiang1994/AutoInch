@@ -1,7 +1,7 @@
 PODS:
-  - AutoInch (2.5.0):
-    - AutoInch/Privacy (= 2.5.0)
-  - AutoInch/Privacy (2.5.0)
+  - AutoInch (2.5.2):
+    - AutoInch/Privacy (= 2.5.2)
+  - AutoInch/Privacy (2.5.2)
 
 DEPENDENCIES:
   - AutoInch (from `../`)
@@ -11,8 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AutoInch: 1d75dc0ef81b295f913b038cc4dd4ecd32e1e1b9
+  AutoInch: 6c88ddebaf722c5fa400300047e252805eb5824e
 
-PODFILE CHECKSUM: ecf7d3b2dbf7db87c4f919501ebdb320458e7aef
+PODFILE CHECKSUM: 87c7fbb0c3b78dc2f06e2c6e064d7e446eefd9de
 
 COCOAPODS: 1.15.2

@@ -143,18 +143,19 @@ label.numberOfLines = 0.screen.width(._320, is: 1).width(._375, is: 2).value
 
 
 ```swift
-print("this is " +
-    "default".screen
-    .width(._320, is: "width 320")
-    .width(._375, is: "width 375")
-    .height(._844, is: "height 844")
-    .height(._812, is: "height 812")
-    .inch(._4_7, is: "4.7 inches")
-    .inch(._5_8, is: "5.8 inches")
-    .inch(._6_5, is: "6.5 inches")
-    .level(.compact, is: "screen 3: 2")
-    .level(.regular, is: "screen 16: 9")
-    .level(.full, is: "screen 19.5: 9")
+print("this is " + "default".screen
+    .width(equalTo: 375, is: "width equal to 375")
+    .width(lessThan: 414, is: "width less than 414")
+    .width(greaterThan: 414, is: "width greater than 414")
+    .height(equalTo: 700, is: "height equal to 375")
+    .height(lessThan: 844, is: "height less than 844")
+    .height(greaterThan: 844, is: "height greater than 844")
+    .inch(._4_7, is: "4.7-inch")
+    .inch(._5_8, is: "5.8-inch")
+    .inch(._6_5, is: "6.5-inch")
+    .level(.compact, is: "screen (4:3)")
+    .level(.regular, is: "screen (16:9)")
+    .level(.full, is: "screen (19.5:9)")
     .value
 )
 ```

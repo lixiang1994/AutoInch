@@ -140,18 +140,19 @@ label.numberOfLines = 0.screen.width(._320, is: 1).width(._375, is: 2).value
 
 
 ```swift
-print("this is " +
-    "default".screen
-    .width(._320, is: "宽度 320")
-    .width(._375, is: "宽度 375")
-    .height(._844, is: "高度 844")
-    .height(._812, is: "高度 812")
+print("this is " + "default".screen
+    .width(equalTo: 375, is: "宽度 等于 375")
+    .width(lessThan: 414, is: "宽度 小于 414")
+    .width(greaterThan: 414, is: "宽度 大于 414")
+    .height(equalTo: 700, is: "高度 等于 375")
+    .height(lessThan: 844, is: "高度 小于 844")
+    .height(greaterThan: 844, is: "高度 大于 844")
     .inch(._4_7, is: "4.7 英寸")
     .inch(._5_8, is: "5.8 英寸")
     .inch(._6_5, is: "6.5 英寸")
-    .level(.compact, is: "屏幕级别 紧凑屏")
-    .level(.regular, is: "屏幕级别 常规屏")
-    .level(.full, is: "屏幕级别 全面屏")
+    .level(.compact, is: "屏幕级别 紧凑屏 (4:3)")
+    .level(.regular, is: "屏幕级别 常规屏 (16:9)")
+    .level(.full, is: "屏幕级别 全面屏 (19.5:9)")
     .value
 )
 ```
