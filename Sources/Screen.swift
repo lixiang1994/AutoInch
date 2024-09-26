@@ -179,10 +179,10 @@ public enum Screen {
             case (375, 667, 2):
                 return ._4_7
                 
-            case (360, 780, 3), (375, 812, 3) where UIDevice.iPhoneMini:
+            case (360, 780, 3) where UIDevice.iPhoneMini, (375, 812, 3) where UIDevice.iPhoneMini:
                 return ._5_4
                 
-            case (360, 640, 3), (414, 736, 3) where UIDevice.iPhonePlus:
+            case (360, 640, 3) where UIDevice.iPhonePlus, (414, 736, 3) where UIDevice.iPhonePlus:
                 return ._5_5
             
             case (375, 812, 3):
